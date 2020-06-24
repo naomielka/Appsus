@@ -6,7 +6,6 @@ import emailList from '../cmps/email-list.cmp.js';
 export default {
     template: `
     <div>
-        <!-- <email-filter></email-filter> -->
         <email-list :emails="emails"></email-list>
         <!-- <email-compose></email-compose> -->
     </div>`,
