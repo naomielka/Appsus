@@ -1,7 +1,3 @@
-export const notesService = {
-    getById
-}
-
 function getById() {
     return Promise.resolve(notes);
 }
@@ -60,3 +56,28 @@ var notes = [{
         }
     },
 ];
+
+const createNote = {
+
+    createTextNote: (txt) => {
+        let newNote = {
+            type: "noteText",
+            isPinned: false,
+            info: { txt: txt }
+        }
+        notes.unshift(newNote)
+    },
+
+    createListNote: (txt) => {
+
+    }
+
+
+}
+
+
+
+export const notesService = {
+    getById,
+    createNote
+}
