@@ -1,6 +1,6 @@
 "use strict";
 
-export const Utils = {
+export const utilsService = {
     storeToStorage,
     loadFromStorage,
     getRandomInt,
