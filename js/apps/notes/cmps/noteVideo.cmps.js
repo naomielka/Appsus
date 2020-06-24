@@ -1,9 +1,8 @@
 export default {
     template: `
-          <section class= 'noteImg'>
-            <h3> {{info.title}}</h3>  
-            <img :src= 'info.url'>  
-          </section>
+           <iframe width="420" height="315"
+           :src="info.src">
+           </iframe> 
           `,
     props: ["info"],
     data() {

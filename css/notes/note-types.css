@@ -2,18 +2,27 @@
     background-color: blue;
     width: 300px;
     height: 200px;
+    margin: 10px;
 }
 
 .noteImg {
     background-color: aqua;
     width: 300px;
     height: 200px;
+    margin: 10px;
+}
+
+.noteImg img {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px;
 }
 
 .noteTodos {
     background-color: blueviolet;
     width: 300px;
     height: 200px;
+    margin: 10px;
 }
 
 .todoDone {

@@ -17,14 +17,14 @@ var notes = [{
         isPinned: true,
         info: { txt: "second text note!" }
     },
-    // {
-    //     type: "noteImg",
-    //     info: {
-    //         url: "http://some-img/me",
-    //         title: "Me playing Mi"
-    //     },
-    //     style: { backgroundColor: "#00d" }
-    // },
+    {
+        type: "noteImg",
+        info: {
+            url: "https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/durable-urls-760x400.png",
+            title: "Me playing Mi"
+        },
+        style: { backgroundColor: "#00d" }
+    },
     {
         type: "noteTodos",
         info: {
@@ -51,6 +51,12 @@ var notes = [{
                     doneAt: 187111111
                 }
             ]
+        }
+    },
+    {
+        type: "noteVideo",
+        info: {
+            src: "https://www.youtube.com/embed/r6hRHTu4HUw",
         }
     },
 ];

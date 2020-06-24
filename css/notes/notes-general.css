@@ -1,4 +1,4 @@
 .notes-container {
     display: flex;
-    margin: 10px auto;
+    flex-wrap: wrap;
 }

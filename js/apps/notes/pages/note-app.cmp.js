@@ -1,6 +1,8 @@
 import { notesService } from '../../../services/notes-service.js'
 import noteText from '../cmps/noteText.cmps.js'
 import noteTodos from '../cmps/noteTodos.cmps.js'
+import noteImg from '../cmps/noteImg.cmps.js'
+import noteVideo from '../cmps/noteVideo.cmps.js'
 
 
 export default {
@@ -34,7 +36,9 @@ export default {
 
     components: {
         noteText,
-        noteTodos
+        noteTodos,
+        noteImg,
+        noteVideo
     }
 
 }
