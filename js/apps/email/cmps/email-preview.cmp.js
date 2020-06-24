@@ -1,3 +1,5 @@
+import { emailService } from '../../../services/email.service.js'
+
 export default {
     props: ['email'],
     template: `
@@ -31,8 +33,7 @@ export default {
             body: this.email.body,
             from: this.email.from,
             isSelected: false,
-            isRead: false
-
+            isRead: this.email.isRead
         }
     },
     computed: {
@@ -65,6 +66,8 @@ export default {
     methods: {
         openEmail() {
             this.isRead = true;
+            emailService.updateEmail(this.email.id, 'isRead', this.isRead);
+            // this.$emit('emailRead')
             this.isSelected = !this.isSelected;
         },
         openEmailFullScreen() {

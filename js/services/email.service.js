@@ -4,7 +4,9 @@ export const emailService = {
     getEmails,
     getEmailById,
     deleteEmail,
-    composeNewEmail
+    composeNewEmail,
+    countReadEmails,
+    updateEmail
 }
 
 var gEmails = [
@@ -24,32 +26,30 @@ function getEmails() {
     return Promise.resolve(gEmails)
 }
 
-function getEmailById(emailId) {
+function getEmailsFromPromise() {
     var emailList = [];
     if (utilService.loadFromStorage('emails')) {
         emailList = utilService.loadFromStorage('emails');
+        return emailList;
     } else {
         getEmails()
             .then((emails) => {
                 emailList = emails;
                 utilService.storeToStorage('emails', emails);
+                return emailList;
             })
     }
+
+}
+
+function getEmailById(emailId) {
+    var emailList = getEmailsFromPromise()
     var email = emailList.find(email => email.id === emailId)
     return email;
 }
 
 function deleteEmail(emailId) {
-    var emailList = [];
-    if (utilService.loadFromStorage('emails')) {
-        emailList = utilService.loadFromStorage('emails');
-    } else {
-        getEmails()
-            .then((emails) => {
-                emailList = emails;
-                utilService.storeToStorage('emails', emails);
-            })
-    }
+    var emailList = getEmailsFromPromise()
     var emailIdx = emailList.findIndex((email) => email.id === emailId);
     emailList.splice(emailIdx, 1)
     utilsService.storeToStorage('emails', emailList)
@@ -64,16 +64,28 @@ function composeNewEmail(to, subject, body) {
         isRead: false,
         sentAt: new Date()
     }
-    var emailList = []
-    if (utilService.loadFromStorage('emails')) {
-        emailList = utilService.loadFromStorage('emails');
-    } else {
-        getEmails()
-            .then((emails) => {
-                emailList = emails;
-                utilService.storeToStorage('emails', emails);
-            })
-    }
+    var emailList = getEmailsFromPromise()
     emailList.unshift(newEmail)
     utilsService.storeToStorage('emails', emailList)
+}
+
+function countReadEmails() {
+    var emailList = getEmailsFromPromise()
+    console.log(emailList)
+    var readEmails = []
+    emailList.find((email) => {
+        if (email.isRead) readEmails.push(email);
+    })
+    return readEmails.length
+
+}
+
+function updateEmail(emailId, key, value) {
+    var email = getEmailById(emailId);
+    email[key] = value;
+    var emailList = getEmailsFromPromise();
+    var emailIdx = emailList.findIndex((email) => email.id === emailId);
+    emailList.splice(emailIdx, 1, email)
+    utilsService.storeToStorage('emails', emailList)
+
 }
