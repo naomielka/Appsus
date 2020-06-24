@@ -3,7 +3,8 @@ import { utilsService as utilService, utilsService } from './utils.service.js'
 export const emailService = {
     getEmails,
     getEmailById,
-    deleteEmail
+    deleteEmail,
+    composeNewEmail
 }
 
 var gEmails = [
@@ -51,5 +52,28 @@ function deleteEmail(emailId) {
     }
     var emailIdx = emailList.findIndex((email) => email.id === emailId);
     emailList.splice(emailIdx, 1)
+    utilsService.storeToStorage('emails', emailList)
+}
+
+function composeNewEmail(to, subject, body) {
+    var newEmail = {
+        id: utilsService.getRandomId(),
+        from: 'Me',
+        subject: subject,
+        body: body,
+        isRead: false,
+        sentAt: new Date()
+    }
+    var emailList = []
+    if (utilService.loadFromStorage('emails')) {
+        emailList = utilService.loadFromStorage('emails');
+    } else {
+        getEmails()
+            .then((emails) => {
+                emailList = emails;
+                utilService.storeToStorage('emails', emails);
+            })
+    }
+    emailList.unshift(newEmail)
     utilsService.storeToStorage('emails', emailList)
 }
