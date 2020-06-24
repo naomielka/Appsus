@@ -49,7 +49,7 @@ export default {
     methods: {
         emailRead() {
             this.isRead = true;
-
+            this.$router.push(`email/${this.email.id}`)
         },
 
     },
