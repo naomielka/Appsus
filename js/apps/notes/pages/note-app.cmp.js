@@ -1,8 +1,8 @@
 export default {
     template: `
-        <main class="app-main car-app">
-            <!-- <router-link to="/">New Car</router-link> -->
-        </main>
+        <div >
+            <h2>Testing note</h2>
+</div>
     `,
     data() {
         return {
