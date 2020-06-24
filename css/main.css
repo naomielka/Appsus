@@ -1,2 +1,8 @@
+/* BASE */
+
 @import './helpers.css';
 @import './base.css';
+
+/* EMAIL */
+
+@import './email/email-preview.cmp.css'
