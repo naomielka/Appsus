@@ -19,7 +19,7 @@ const myRoutes = [{
         component: emailDetails
     },
     {
-        path: '/email/newEmail',
+        path: '/newEmail',
         component: emailCompose
     },
     {

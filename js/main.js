@@ -2,6 +2,8 @@ import { myRouter } from './routes.js'
 import notesApp from './apps/notes/pages/note-app.cmp.js';
 import emailApp from './apps/email/pages/email-app.cmp.js';
 
+
+
 new Vue({
     el: '#Appsus',
     router: myRouter,
@@ -13,6 +15,7 @@ new Vue({
        <router-link to="/homepage"> homepage</router-link>
        <router-link to="/email"> email</router-link>
        <router-link to="/notes">notes</router-link>
+    
         </nav>
 
 
@@ -25,6 +28,7 @@ new Vue({
     components: {
         // appHeader,
         emailApp,
-        notesApp
+        notesApp,
+
     }
 });
