@@ -1,4 +1,5 @@
 import { emailService } from '../../../services/email.service.js'
+import { utilsService } from '../../../services/utils.service.js'
 import emailList from '../cmps/email-list.cmp.js';
 // import emailFilter from '../cmps/email-filter.cmp.js';
 
@@ -7,6 +8,7 @@ export default {
     <div>
         <!-- <email-filter></email-filter> -->
         <email-list :emails="emails"></email-list>
+        <!-- <email-compose></email-compose> -->
     </div>`,
     data() {
         return {
@@ -15,11 +17,15 @@ export default {
     },
     computed: {},
     created() {
-        emailService.getEmails()
-            .then((emails) => {
-                this.emails = emails;
-                console.log(this.emails)
-            })
+        if (utilsService.loadFromStorage('emails')) {
+            this.emails = utilsService.loadFromStorage('emails');
+        } else {
+            this.emails = emailService.getEmails()
+                .then((emails) => {
+                    this.emails = emails;
+                    utilsService.storeToStorage('emails', emails);
+                })
+        }
     },
     methods: {},
     components: {

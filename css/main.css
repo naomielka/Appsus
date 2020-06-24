@@ -1,4 +1,13 @@
+/* BASE */
+
 @import './helpers.css';
 @import './base.css';
+
+/* EMAIL */
+
+@import './email/email-preview.cmp.css';
+
+/* NOTES */
+
 @import './notes/note-types.css';
 @import './notes/notes-general.css';
