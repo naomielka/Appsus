@@ -9,12 +9,14 @@ export default {
     template: `
 <div >
 <h2>Testing note</h2>
-<input type="text"/> 
- <button @click= 'type = "noteText"'>T</button>
- <button @click= 'type = "noteTodos"'>L</button>
- <button @click= 'type = "noteImg"' >I</button>
- <button @click= 'type = "noteVideo"'>V</button>
- <button @click= 'createNote' >Create</button>
+<input :placeholder= 'placeHolder' v-model='txt' type="text"/> 
+<br/>
+<input placeholder= 'Image Url' v-if='type ==="noteImg"' type="text"/>
+ <button @click= 'changeType("noteText")'>T</button>
+ <button @click= 'changeType("noteTodos")'>L</button>
+ <button @click= 'changeType("noteImg")' >I</button>
+ <button @click= 'changeType("noteVideo") '>V</button>
+ <button @click= 'createNote(type)' >Create</button>
 <section class='notes-container'>
 <div  v-for='(note, idx) in notes'> 
 <component :is="note.type"  :info="note.info"></component>
@@ -27,11 +29,18 @@ export default {
     `,
     data() {
         return {
+            placeHolder: 'Pick a note type',
             notes: null,
-            type: null
+            type: null,
+            txt: null,
+            videoUrl: null,
+            imgUrl: null
         }
     },
-    computed: {},
+    computed: {
+
+
+    },
     created() {
         notesService.getById()
             .then(notes => this.notes = notes)
@@ -42,8 +51,27 @@ export default {
         },
 
         createNote() {
+            let newNote = {}
             if (!this.type) return
-            console.log(this.type)
+            if (this.type === 'noteText') {
+
+                notesService.createNote.createTextNote(this.txt)
+                    //console.log(notesService.getById());
+
+            }
+
+
+
+        },
+        changeType(type) {
+            this.type = type
+            if (type === 'noteImg') {
+                this.placeHolder = 'Title for the image'
+            } else if (type === 'noteTodos') {
+                this.placeHolder = 'Title for the list'
+            } else if (type === 'noteText') {
+                this.placeHolder = 'Enter Note'
+            } else { this.placeHolder = 'Video URL (Youtube)' }
         }
     },
 
