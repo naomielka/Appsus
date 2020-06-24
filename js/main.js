@@ -1,15 +1,18 @@
+import { myRouter } from './routes.js'
+
+
 new Vue({
     el: '#Appsus',
-    // router: myRouter,
+    router: myRouter,
     template: `
     <div>
         <app-header></app-header>
 
         <nav>
 
-       <router-link to='homepage'></router-link>
-       <router-link to='email'></router-link>
-       <router-link to='notes'></router-link>
+       <!-- <router-link to='homepage'></router-link> -->
+       <router-link to='/email'> email</router-link>
+       <router-link to='/notes'>notes</router-link>
 
         </nav>
 
@@ -23,3 +26,6 @@ new Vue({
         appHeader,
     }
 });
+
+
+export const myRouter = new VueRouter({ routes: myRoutes })
