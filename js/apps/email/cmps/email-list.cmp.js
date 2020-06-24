@@ -3,8 +3,8 @@ import emailPreview from './email-preview.cmp.js';
 export default {
     props: ['emails'],
     template: `<ul class="">
-        <li v-for="email in emails" :key="emaii.id">
-            <email-preview></email-preview>
+        <li v-for="email in emails" :key="email.id">
+            <email-preview :email="email"></email-preview>
         </li>
     </ul>`,
     methods: {},
