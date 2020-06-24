@@ -9,7 +9,12 @@ export default {
     template: `
 <div >
 <h2>Testing note</h2>
-  
+<input type="text"/> 
+ <button @click= 'type = "noteText"'>T</button>
+ <button @click= 'type = "noteTodos"'>L</button>
+ <button @click= 'type = "noteImg"' >I</button>
+ <button @click= 'type = "noteVideo"'>V</button>
+ <button @click= 'createNote' >Create</button>
 <section class='notes-container'>
 <div  v-for='(note, idx) in notes'> 
 <component :is="note.type"  :info="note.info"></component>
@@ -22,7 +27,8 @@ export default {
     `,
     data() {
         return {
-            notes: null
+            notes: null,
+            type: null
         }
     },
     computed: {},
@@ -30,7 +36,16 @@ export default {
         notesService.getById()
             .then(notes => this.notes = notes)
     },
-    methods: {},
+    methods: {
+        setType(type) {
+
+        },
+
+        createNote() {
+            if (!this.type) return
+            console.log(this.type)
+        }
+    },
 
 
 
