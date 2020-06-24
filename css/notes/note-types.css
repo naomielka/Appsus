@@ -3,6 +3,18 @@
     width: 300px;
     height: 200px;
     margin: 10px;
+    position: relative;
+}
+
+.noteText:hover :first-child {
+    display: block;
+}
+
+.delete-button {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    display: none;
 }
 
 .noteImg {

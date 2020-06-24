@@ -1,5 +1,5 @@
 import { emailService } from '../../../services/email.service.js'
-
+import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     props: ['email'],
     template: `
@@ -67,7 +67,12 @@ export default {
         openEmail() {
             this.isRead = true;
             emailService.updateEmail(this.email.id, 'isRead', this.isRead);
-            // this.$emit('emailRead')
+            // פה זה יורה את האיוונט שימי לב שאני עושה אימפורט לבאס בשתי הקבצים והוא ריק בתכלס 
+            //:(גם עשיתי אימפורט במיין כי זה צעק עליי 
+            // אבל תכלס נראה לי לא צריך
+            //המשך חשוב מאוד ב
+            // js/apps/notes/pages/note-app.cmp.js line 160
+            eventBus.$emit('emailRead')
             this.isSelected = !this.isSelected;
         },
         openEmailFullScreen() {
@@ -80,4 +85,7 @@ export default {
         }
 
     },
+    components: {
+        eventBus
+    }
 }

@@ -1,6 +1,7 @@
 export default {
     template: `
           <section class= 'noteTodos'>
+            <h4> {{info.label}} </h4>
               <ul v-for='(todo,idx) in info.todos'>
                   <li @click='todoClicked(idx)' :class='{todoDone: info.todos[idx].doneAt }'> {{info.todos[idx].txt }} </li>
              </ul>

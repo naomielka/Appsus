@@ -1,1 +1,15 @@
-export const eventBus = new Vue();
+const bus = new Vue();
+
+//bus.$on('countRead', )
+
+
+
+
+
+
+
+
+
+
+
+export const eventBus = bus;

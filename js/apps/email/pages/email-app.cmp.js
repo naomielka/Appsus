@@ -1,6 +1,7 @@
 import { emailService } from '../../../services/email.service.js'
 import { utilsService } from '../../../services/utils.service.js'
 import emailList from '../cmps/email-list.cmp.js';
+import { eventBus } from '../../../services/event-bus.service.js'
 // import emailFilter from '../cmps/email-filter.cmp.js';
 
 export default {
@@ -30,5 +31,6 @@ export default {
     components: {
         emailList,
         // emailFilter,
+        eventBus
     }
 }

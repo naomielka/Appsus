@@ -3,7 +3,6 @@ import notesApp from './apps/notes/pages/note-app.cmp.js';
 import emailApp from './apps/email/pages/email-app.cmp.js';
 
 
-
 new Vue({
     el: '#Appsus',
     router: myRouter,

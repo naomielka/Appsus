@@ -76,6 +76,7 @@ function countReadEmails() {
     emailList.find((email) => {
         if (email.isRead) readEmails.push(email);
     })
+
     return readEmails.length
 
 }
