@@ -44,7 +44,7 @@ var notes = [{
             label: "How was it:",
             todos: [{
                     txt: "Do that",
-                    doneAt: null
+                    doneAt: 187111111
                 },
                 {
                     txt: "Do this",
