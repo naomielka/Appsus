@@ -1,9 +1,14 @@
-// export default {
-//     props: ['emails'],
-//     template: `<ul class="">
-//         <li v-for="email in emails" :key="emaii.id">
-//         </li>
-//     </ul>`,
-//     methods: {},
-//     components: {}
-// }
+import emailPreview from './email-preview.cmp';
+
+export default {
+    props: ['emails'],
+    template: `<ul class="">
+        <li v-for="email in emails" :key="emaii.id">
+            <email-preview></email-preview>
+        </li>
+    </ul>`,
+    methods: {},
+    components: {
+        emailPreview
+    }
+}
