@@ -19,6 +19,7 @@ export default {
             .then((emails) => {
                 this.emails = emails;
             })
+        console.log(this.emails)
     },
     methods: {},
     components: {
