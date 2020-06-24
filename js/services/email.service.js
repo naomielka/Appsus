@@ -2,8 +2,7 @@ export const emailService = {
     getEmails,
 }
 
-
-emails = [
+var emails = [
     { from: 'jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
     { from: 'jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
     { from: 'jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
@@ -19,5 +18,5 @@ emails = [
 ]
 
 function getEmails() {
-    Promise.resolve(emails)
+    return Promise.resolve(emails)
 }
