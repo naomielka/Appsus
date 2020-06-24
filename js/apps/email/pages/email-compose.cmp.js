@@ -1,15 +1,32 @@
 export default {
     template: `
     <div>
-      <p>composing</p>
+        <form>
+            <span>To:</span> <input type="text"/> 
+            </br>
+            <span>Subject:</span> <input type="text"/>
+            </br>
+            <textarea rows="1" cols="50"></textarea>     
+            <button @click="sendEmail">Send</button>
+        </form>
     </div>
     `,
     data() {
-        return {}
+        return {
+            to: '',
+            subject: '',
+            body: '',
+        }
     },
     created() {
-        console.log('yo')
+        // console.log('yo')
     },
-    methods: {},
+    methods: {
+        sendEmail() {
+            this.to = '';
+            this.subject = '';
+            this.body = '';
+        }
+    },
     components: {}
 }

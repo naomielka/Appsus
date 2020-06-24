@@ -1,8 +1,9 @@
-import { utilsService as utilService } from './utils.service.js'
+import { utilsService as utilService, utilsService } from './utils.service.js'
 
 export const emailService = {
     getEmails,
-    getEmailById
+    getEmailById,
+    deleteEmail
 }
 
 var gEmails = [
@@ -30,9 +31,25 @@ function getEmailById(emailId) {
         getEmails()
             .then((emails) => {
                 emailList = emails;
-                utilService.saveToStorage('emails', emails);
+                utilService.storeToStorage('emails', emails);
             })
     }
     var email = emailList.find(email => email.id === emailId)
     return email;
+}
+
+function deleteEmail(emailId) {
+    var emailList = [];
+    if (utilService.loadFromStorage('emails')) {
+        emailList = utilService.loadFromStorage('emails');
+    } else {
+        getEmails()
+            .then((emails) => {
+                emailList = emails;
+                utilService.storeToStorage('emails', emails);
+            })
+    }
+    var emailIdx = emailList.findIndex((email) => email.id === emailId);
+    emailList.splice(emailIdx, 1)
+    utilsService.storeToStorage('emails', emailList)
 }

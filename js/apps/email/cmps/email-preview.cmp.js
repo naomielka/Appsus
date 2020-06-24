@@ -1,14 +1,28 @@
 export default {
     props: ['email'],
     template: `
-    <div v-bind:class="compClasses" @click="emailRead">
-        <div class="img-container flex align-center justify-center">{{senderFirstLetter}}</div>
-        <div class="content flex col">
-            <p>From: {{from}}</p>
-            <p>Subject: {{subject}}</p>
-            <p>{{body}}</p>
+    <div class="flex col">
+        <section v-bind:class="compClasses" @click="openEmail">
+            <div class="img-container flex align-center justify-center">{{senderFirstLetter}}</div>
+            <div class="content flex col">
+                <p>From: {{from}}</p>
+                <p>Subject: {{subject}}</p>
+                <p>{{body}}</p>
+            </div>
+            <span class="sent-at">{{sentAt}}</span>
+        </section>
+        <div class="email-preview" v-if="isSelected">
+            <section class="email-header flex space-between">
+                <h1>Subject: {{email.subject}}</h1> 
+                <div class="action-buttons">
+                        <button @click="deleteEmail">delete</button>
+                        <button @click="openEmailFullScreen">full screen</button>
+                    </div>
+            </section>
+            <h3>from: {{email.from}}</h3>
+            <p>Sent at: {{sentAt}}</p>
+            <p>{{email.body}}</p>
         </div>
-        <span class="sent-at">{{sentAt}}</span>
     </div>
     `,
     data() {
@@ -16,7 +30,9 @@ export default {
             subject: this.email.subject,
             body: this.email.body,
             from: this.email.from,
+            isSelected: false,
             isRead: false
+
         }
     },
     computed: {
@@ -47,10 +63,18 @@ export default {
         }
     },
     methods: {
-        emailRead() {
+        openEmail() {
             this.isRead = true;
+            this.isSelected = !this.isSelected;
+        },
+        openEmailFullScreen() {
             this.$router.push(`email/${this.email.id}`)
         },
+        deleteEmail() {
+            emailService.deleteEmail(this.email.id)
+            this.$router.replace('/email')
+
+        }
 
     },
 }
