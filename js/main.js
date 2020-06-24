@@ -1,4 +1,6 @@
 import { myRouter } from './routes.js'
+import notesApp from './apps/notes/pages/note-app.cmp.js';
+
 
 
 new Vue({
@@ -6,14 +8,12 @@ new Vue({
     router: myRouter,
     template: `
     <div>
-        <app-header></app-header>
+        <!-- <app-header></app-header> -->
 
         <nav>
-
        <!-- <router-link to='homepage'></router-link> -->
        <router-link to='/email'> email</router-link>
        <router-link to='/notes'>notes</router-link>
-
         </nav>
 
 
@@ -23,9 +23,6 @@ new Vue({
     </div> 
     `,
     components: {
-        appHeader,
+        // appHeader,
     }
 });
-
-
-export const myRouter = new VueRouter({ routes: myRoutes })

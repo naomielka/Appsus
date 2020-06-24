@@ -8,16 +8,17 @@ import notesApp from './apps/notes/pages/note-app.cmp.js';
 
 
 
-const myRoutes = [{
-        path: '/',
-        component: homePage
-    },
+const myRoutes = [
+    // {
+    //     path: '/',
+    //     component: homePage
+    // },
 
-    {
-        path: '/email',
-        component: emailApp
+    // {
+    //     path: '/email',
+    //     component: emailApp
 
-    },
+    // },
     {
         path: '/notes',
         component: notesApp
