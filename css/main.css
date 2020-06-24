@@ -1,2 +1,4 @@
 @import './helpers.css';
 @import './base.css';
+@import './notes/note-types.css';
+@import './notes/notes-general.css';
