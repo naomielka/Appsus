@@ -1,4 +1,4 @@
-import emailPreview from './email-preview.cmp';
+import emailPreview from './email-preview.cmp.js';
 
 export default {
     props: ['emails'],
