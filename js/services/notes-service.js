@@ -25,17 +25,32 @@ var notes = [{
     //     },
     //     style: { backgroundColor: "#00d" }
     // },
-    // {
-    //     type: "noteTodos",
-    //     info: {
-    //         label: "How was it:",
-    //         todos: [{
-    //             txt: "Do that",
-    //             doneAt: null
-    //         }, {
-    //             txt: "Do this",
-    //             doneAt: 187111111
-    //         }]
-    //     }
-    // }
+    {
+        type: "noteTodos",
+        info: {
+            label: "How was it:",
+            todos: [{
+                txt: "Do that",
+                doneAt: null
+            }, {
+                txt: "Do this",
+                doneAt: 187111111
+            }]
+        }
+    },
+    {
+        type: "noteTodos",
+        info: {
+            label: "How was it:",
+            todos: [{
+                    txt: "Do that",
+                    doneAt: null
+                },
+                {
+                    txt: "Do this",
+                    doneAt: 187111111
+                }
+            ]
+        }
+    },
 ];
