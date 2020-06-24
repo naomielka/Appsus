@@ -1,8 +1,3 @@
-var note = {
-    title: 'Notes',
-    cmps: [{
-            type: 'textBox',
-            info: {
 
             }
         },
