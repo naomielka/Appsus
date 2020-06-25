@@ -5,8 +5,11 @@
 export default {
     template: `
     <div>
-    <input type="text" placeholder="Search Email">
-    
+    <input @change="" v-model="" type="text" placeholder="Search Email">
+    <select v-model="" @change="">
+            <option value="read">Read</option>
+            <option value="unread">Unread</option>
+    </select>
     </div>`,
     methods: {},
     components: {}

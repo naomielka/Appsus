@@ -13,7 +13,6 @@ new Vue({
         <app-header></app-header>
         <navbar></navbar>
         <main>
-            <!-- <email-app></email-app> -->
             <router-view/>
         </main>
     </div> 
