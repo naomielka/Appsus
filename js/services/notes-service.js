@@ -23,15 +23,16 @@ var notes = [{
 
         type: "noteImg",
         info: {
+            id: utilsService.getRandomId(),
             url: "https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/durable-urls-760x400.png",
             title: "Me playing Mi"
         },
         style: { backgroundColor: "#00d" }
     },
     {
-        id: utilsService.getRandomId(),
         type: "noteTodos",
         info: {
+            id: utilsService.getRandomId(),
             label: "How was it:",
             todos: [{
                 txt: "Do that",
@@ -43,9 +44,9 @@ var notes = [{
         }
     },
     {
-        id: utilsService.getRandomId(),
         type: "noteTodos",
         info: {
+            id: utilsService.getRandomId(),
             label: "How was it:",
             todos: [{
                     txt: "Do that",
@@ -59,9 +60,9 @@ var notes = [{
         }
     },
     {
-        id: utilsService.getRandomId(),
         type: "noteVideo",
         info: {
+            id: utilsService.getRandomId(),
             src: "https://www.youtube.com/embed/r6hRHTu4HUw",
         }
     },
@@ -73,7 +74,10 @@ const createNote = {
         let newNote = {
             type: "noteText",
             isPinned: false,
-            info: { txt: txt }
+            info: {
+                id: utilsService.getRandomId(),
+                txt: txt
+            }
         }
         notes.unshift(newNote)
     },
@@ -82,6 +86,7 @@ const createNote = {
         let newNote = {
             type: "noteTodos",
             info: {
+                id: utilsService.getRandomId(),
                 label: txt,
                 todos: [{
                     txt: "Do that",
@@ -99,6 +104,7 @@ const createNote = {
         let newNote = {
             type: "noteImg",
             info: {
+                id: utilsService.getRandomId(),
                 url: url,
                 title: txt
             },
@@ -111,6 +117,7 @@ const createNote = {
         let newNote = {
             type: "noteVideo",
             info: {
+                id: utilsService.getRandomId(),
                 src: 'https://www.youtube.com/embed/' + txt.split(regex)[1],
             }
         }

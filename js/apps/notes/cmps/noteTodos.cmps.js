@@ -1,3 +1,6 @@
+import { notesService } from '../../../services/notes-service.js'
+
+
 export default {
     template: `
           <section class= 'noteTodos'>
@@ -5,6 +8,8 @@ export default {
               <ul v-for='(todo,idx) in info.todos'>
                   <li @click='todoClicked(idx)' :class='{todoDone: info.todos[idx].doneAt }'> {{info.todos[idx].txt }} </li>
              </ul>
+             <button @click='deleteById' class='delete-button'>D</button>
+
           </section>
           `,
     props: ["info"],
@@ -30,6 +35,11 @@ export default {
 
 
 
+        },
+        deleteById() {
+            console.log(this.info.id);
+            notesService.deleteNote(this.info.id)
+
         }
     },
     computed: {
@@ -37,5 +47,8 @@ export default {
             return "list" + this._uid;
         },
 
+    },
+    components: {
+        notesService
     }
 };
