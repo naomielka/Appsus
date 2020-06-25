@@ -1,0 +1,26 @@
+.header {
+    font-family: satisfy;
+    background-color: rgba(255, 138, 71, 0.4);
+    border-bottom: 3px solid rgb(255, 94, 0);
+}
+
+.header h1 {
+    /* position: relative; */
+    -webkit-text-fill-color: rgb(248, 172, 73);
+    ;
+    /* -webkit-text-fill-color: transparent; */
+    /* -webkit-text-stroke-width: 1.5px; */
+    /* -webkit-text-stroke-color: rgba(255, 251, 251, 0.781); */
+    text-shadow: 5px 5px #db4343, 10px 10px #66635a4b;
+    margin: 10px auto 20px;
+    font-size: 6.5rem;
+    z-index: 1;
+}
+
+.header .bc-div {
+    background-color: rgba(245, 229, 156, 0.582);
+    height: 70px;
+    width: 500px;
+    position: absolute;
+    border-radius: 10px;
+}

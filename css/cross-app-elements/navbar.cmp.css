@@ -1,0 +1,15 @@
+.navbar {
+    background-color: rgba(236, 222, 143, 0.5);
+    height: 50px;
+    font-family: bebas;
+}
+
+.navbar a {
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.navbar a:not(:last-of-type) {
+    border-right: 1px tomato solid;
+}
