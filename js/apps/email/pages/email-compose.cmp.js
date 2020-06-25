@@ -20,9 +20,7 @@ export default {
             body: '',
         }
     },
-    created() {
-        // console.log('yo')
-    },
+    created() {},
     methods: {
         sendEmail() {
             emailService.composeNewEmail(this.to, this.subject, this.body)

@@ -1,16 +1,27 @@
-// import emailPreview from './email-preview.cmp.js';
-// import emailStatus from './email-status.cmp.js';
-// import { eventBus } from '../../../services/event-bus.service.js'
-
 export default {
     template: `
     <div>
-    <input @change="" v-model="" type="text" placeholder="Search Email">
-    <select v-model="" @change="">
+    <input @input="filterBySearchStr" v-model="filterBy.searchStr" type="text" placeholder="Search Email">
+    <select @change="filterByReadStat" v-model="filterBy.readStatus">
             <option value="read">Read</option>
             <option value="unread">Unread</option>
     </select>
     </div>`,
-    methods: {},
+    data() {
+        return {
+            filterBy: {
+                searchStr: '',
+                readStatus: ''
+            }
+        }
+    },
+    methods: {
+        filterBySearchStr() {
+            this.$emit('filtered', this.filterBy.searchStr, 'searchStr')
+        },
+        filterByReadStat() {
+            this.$emit('filtered', this.filterBy.readStatus, 'readStat')
+        }
+    },
     components: {}
 }

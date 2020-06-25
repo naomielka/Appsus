@@ -17,8 +17,11 @@ export default {
             <section class="email-header flex space-between">
                 <h1>Subject: {{email.subject}}</h1> 
                 <div class="action-buttons">
+                    <!-- להוסיף גם RESPOND -->
                         <button @click="deleteEmail">delete</button>
-                        <button @click="openEmailFullScreen">full screen</button>
+                        <button  @click="openEmailFullScreen">full screen</button>
+                        <!-- כשהמשתמש בפול סקרין אז שהכפתור הזה לא יופיע ובמקומו
+                         יופיע כפתור של חזרה לאימיילס -->
                     </div>
             </section>
             <h3>from: {{email.from}}</h3>
@@ -65,7 +68,7 @@ export default {
         }
     },
     created() {
-        emailService.getImgContainerColor()
+        // emailService.getImgContainerColor()
     },
     methods: {
         openEmail() {
