@@ -35,11 +35,11 @@ var notes = [{
             id: utilsService.getRandomId(),
             label: "How was it:",
             todos: [{
-                txt: "Do that",
-                doneAt: null
+                txt: "Do dat",
+                doneAt: true
             }, {
                 txt: "Do this",
-                doneAt: 187111111
+                doneAt: false
             }]
         }
     },
@@ -50,11 +50,11 @@ var notes = [{
             label: "How was it:",
             todos: [{
                     txt: "Do that",
-                    doneAt: 187111111
+                    doneAt: true
                 },
                 {
                     txt: "Do this",
-                    doneAt: 187111111
+                    doneAt: false
                 }
             ]
         }
@@ -99,6 +99,7 @@ const createNote = {
         }
         notes.unshift(newNote)
     },
+
 
     createImgNote: (txt, url) => {
         let newNote = {
