@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.noteText:hover :first-child {
+.noteText:hover .delete-button {
     display: block;
 }
 
@@ -35,6 +35,11 @@
     width: 300px;
     height: 200px;
     margin: 10px;
+    position: relative;
+}
+
+.noteTodos:hover .delete-button {
+    display: block;
 }
 
 .todoDone {

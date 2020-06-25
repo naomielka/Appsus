@@ -1,6 +1,10 @@
+import { notesService } from '../../../services/notes-service.js'
+
+
+
 export default {
     template: `
-    
+
            <iframe width="420" height="315"
            :src="info.src">
            
@@ -21,5 +25,8 @@ export default {
         listId() {
             return "list" + this._uid;
         }
+    },
+    components: {
+        notesService
     }
 };

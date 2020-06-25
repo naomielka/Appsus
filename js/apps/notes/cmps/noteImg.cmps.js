@@ -1,3 +1,6 @@
+import { notesService } from '../../../services/notes-service.js'
+
+
 export default {
     template: `
           <section class= 'noteImg'>
@@ -20,5 +23,8 @@ export default {
         listId() {
             return "list" + this._uid;
         }
+    },
+    components: {
+        notesService
     }
 };
