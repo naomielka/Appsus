@@ -9,6 +9,7 @@ export default {
                 <div class="action-buttons">
                     <button @click="deleteEmail">delete</button>
                     <button @click="respond">Respond</button>
+                    <button @click="goBack">Back</button>
                 </div>
             </section>
             <h3>from: {{email.from}}</h3>
@@ -61,7 +62,6 @@ export default {
             emailService.updateEmail(this.email.id, 'isDeleted', this.email.isDeleted);
             emailService.deleteEmail(this.email.id)
             this.$router.replace('/email');
-
         },
         respond() {
             this.isRespond = !this.isRespond;
@@ -70,7 +70,9 @@ export default {
             emailService.composeNewEmail(this.email.from, `RE:${this.email.subject}`, this.body)
             this.body = '';
             this.isRespond = false;
-
+        },
+        goBack() {
+            this.$router.replace('/email');
         }
     },
 }
