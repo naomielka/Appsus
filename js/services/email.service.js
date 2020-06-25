@@ -6,7 +6,8 @@ export const emailService = {
     deleteEmail,
     composeNewEmail,
     countReadEmails,
-    updateEmail
+    updateEmail,
+    getImgContainerColor
 }
 
 var gEmails = [
@@ -89,4 +90,16 @@ function updateEmail(emailId, key, value) {
     emailList.splice(emailIdx, 1, email)
     utilsService.storeToStorage('emails', emailList)
 
+}
+
+function getImgContainerColor() {
+    var colors = [
+        '#ff0000', '#00ff00', '#0000ff',
+        '#ff3333', '#ffff00', '#ff6600'
+    ];
+    var randomColor = colors[Math.floor(
+        Math.random() * colors.length)];
+
+    var elDiv = document.querySelector('.img-container');
+    elDiv.style.backgroundColor = randomColor;
 }
