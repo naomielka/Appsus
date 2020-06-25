@@ -11,9 +11,9 @@ export default {
             <input placeholder='Enter URL' v-model='info.url' v-if='isUpdating===true' type="text"/> 
             
             <div v-if='pickingColor === false' class='buttons-wrapper'>
-                  <button @click='pickingColor = !pickingColor' class='delete-button'>C</button>
-                  <button @click='isUpdating = !isUpdating' class='delete-button'>U</button>
-                  <button @click='deleteById' class='delete-button'>D</button>
+                  <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></button>
+                  <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></button>
+                  <button @click='deleteById' class='delete-button'><i class="far fa-trash-alt"></i></button>
               </div>
             <color-pick @colorHover='previewColor' @colorPicked='applyColor' v-else-if='pickingColor === true'/>
 
@@ -24,7 +24,7 @@ export default {
         return {
             pickingColor: false,
             isUpdating: false,
-            noteStyle: 'blue',
+            noteStyle: '7afcff',
             isHovering: false,
 
         };

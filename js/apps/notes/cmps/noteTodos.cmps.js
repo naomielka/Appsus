@@ -13,19 +13,19 @@ export default {
               <ul v-for='(todo,idx) in info.todos'>
                   <singleTodo v-if='isUpdating === false' :todo="todo"> </singleTodo>
                   <input v-model='todo.txt' v-if='isUpdating===true' type="text"/>
-                  <button @click='deleteTodo(idx)' v-if='isUpdating === true'>D</button>
+                  <button @click='deleteTodo(idx)' v-if='isUpdating === true'><i class="far fa-trash-alt"></i></button>
              </ul>
              <div v-if='addingTodo'>
                   <input v-model='todoToAdd' type="text"/>
-                  <button @click='pushTodo(todoToAdd)'>Add</button>
+                  <button @click='pushTodo(todoToAdd)'><i class="fas fa-plus"></i></i></button>
                 
                 </div>
             
              <div v-if='pickingColor === false' class='buttons-wrapper'>
-                  <button @click='addTodoMode' class='delete-button'>+</button>
-                  <button @click='pickingColor = !pickingColor' class='delete-button'>C</button>
-                  <button @click='isUpdating = !isUpdating' class='delete-button'>U</button>
-                  <button @click='deleteById' class='delete-button'>D</button>
+                  <button @click='addTodoMode' class='delete-button'><i class="fas fa-plus"></i></button>
+                  <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></button>
+                  <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></button>
+                  <button @click='deleteById' class='delete-button'><i class="far fa-trash-alt"></i></button>
               </div>
             <color-pick @colorHover='previewColor' @colorPicked='applyColor' v-else-if='pickingColor === true'/>
 
@@ -37,7 +37,7 @@ export default {
         return {
             val: "",
             isUpdating: false,
-            noteStyle: 'purple',
+            noteStyle: '#feff9c',
             pickingColor: false,
             isHovering: false,
             addingTodo: false,

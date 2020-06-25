@@ -8,6 +8,7 @@
     margin: 10px;
     text-align: center;
     position: relative;
+    box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
     /* padding: 30%; */
 }
 
@@ -33,7 +34,7 @@
 .color-pallet {
     position: absolute;
     bottom: 5px;
-    right: 10px;
+    right: 20px;
 }
 
 .noteImg {
@@ -42,6 +43,7 @@
     height: 200px;
     margin: 10px;
     position: relative;
+    box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .noteImg:hover .buttons-wrapper {
@@ -61,6 +63,7 @@
     padding: 30px;
     margin: 10px;
     position: relative;
+    box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .noteTodos:hover .buttons-wrapper {
