@@ -9,7 +9,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     template: `
     <div class="email-app flex row">
-        <email-sidebar></email-sidebar>
+        <email-sidebar  @filtered="getFilter"></email-sidebar>
         <div class="flex col width-all">
         <section class="top-bar flex row space-between align-center">
             <email-filter @filtered="getFilter"></email-filter>
@@ -27,7 +27,7 @@ export default {
     },
     computed: {
         emailsToShow() {
-            if (this.filterBy === null && this.filterType === null) {
+            if (this.filterBy === null && this.filterType === null || this.filterType === 'all') {
                 return this.emails;
             } else {
                 var emailsToShow = []
@@ -45,6 +45,8 @@ export default {
                             return email
                         }
                     })
+                } else if (this.filterType === 'star') {
+                    emailsToShow = this.emails.filter(email => email.isStarred === true)
                 }
             }
             return emailsToShow
