@@ -1,0 +1,13 @@
+.navbar {
+    background-color: rgb(255, 255, 255, 0.5);
+    height: 50px;
+    font-family: bebas;
+}
+
+.navbar a {
+    padding: 10px;
+}
+
+.navbar a:not(:last-of-type) {
+    border-right: 1px black solid;
+}

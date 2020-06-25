@@ -1,7 +1,15 @@
 /* BASE */
 
-@import './helpers.css';
-@import './base.css';
+@import './helpers/helpers.css';
+@import './helpers/base.css';
+
+/* FONTS */
+
+@import './fonts.css';
+
+/* CROSS-APP-ELEMETS */
+
+@import './cross-app-elements/navbar.css';
 
 /* EMAIL */
 

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: amatic;
+    src: url(../fonts/Amatic_SC/AmaticSC-Regular.ttf)
+}
+
+@font-face {
+    font-family: bebas;
+    src: url(../fonts/Bebas_Neue/BebasNeue-Regular.ttf)
+}
+
+@font-face {
+    font-family: michoma;
+    src: url(../fonts/Michroma/Michroma-Regular.ttf)
+}
+
+@font-face {
+    font-family: satisfy;
+    src: url(../fonts/Satisfy/Satisfy-Regular.ttf)
+}
