@@ -23,8 +23,8 @@ export default {
             
              <div v-if='pickingColor === false' class='buttons-wrapper'>
                   <button @click='addTodoMode' class='delete-button'><i class="fas fa-plus"></i></button>
-                  <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></button>
-                  <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></button>
+                  <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></i></button>
+                  <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></i></button>
                   <button @click='deleteById' class='delete-button'><i class="far fa-trash-alt"></i></button>
               </div>
             <color-pick @colorHover='previewColor' @colorPicked='applyColor' v-else-if='pickingColor === true'/>
