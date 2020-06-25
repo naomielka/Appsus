@@ -3,7 +3,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     template: `
-    <div >
+    <div class="email-status" >
         <span>Read Emails: {{readEmails}}</span>
         <span>Unread Emails: {{unreadEmails}}</span>
     </div>`,

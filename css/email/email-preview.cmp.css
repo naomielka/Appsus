@@ -27,15 +27,20 @@
 
 .email-preview .content {
     margin: auto;
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .read {
     font-weight: 400;
 }
 
+.email-preview .icons {
+    margin: 20px;
+}
+
 .email-preview .fa-star {
     color: gold;
+    font-size: 1.5rem;
 }
 
 .email-preview .fa-envelope-open,

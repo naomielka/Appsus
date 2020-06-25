@@ -53,6 +53,7 @@ select {
     border: unset;
     background: unset;
     border-bottom: 1px solid black;
+    outline: none;
 }
 
 textarea {

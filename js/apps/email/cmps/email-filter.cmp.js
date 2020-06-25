@@ -1,6 +1,6 @@
 export default {
     template: `
-    <div>
+    <div class="email-filter">
     <input @input="filterBySearchStr" v-model="filterBy.searchStr" type="text" placeholder="Search Email">
     <select @change="filterByReadStat" v-model="filterBy.readStatus">
             <option value="read">Read</option>

@@ -6,10 +6,11 @@ export default {
     <div class="flex col">
         <section v-bind:class="compEmailClasses" @click="openEmail">
             <div class="img-container flex align-center justify-center">{{senderFirstLetter}}</div>
-            <!-- <i v-if="this.email.isStarred" class="fas fa-star"></i> -->
-            <!-- <i @click="starred" class="far fa-star"></i> -->
-            <i v-bind:class="compEnvelopeClasses"></i>
-            <div class="content flex col">
+            <div class=" icons flex col justify-center space-between">
+                <i @click.stop="starOrUnstarThis" v-bind:class="compStarClasses"></i>
+                <i v-bind:class="compEnvelopeClasses"></i>
+            </div>
+                <div class="content flex col">
                 <p>From: {{from}}</p>
                 <p>Subject: {{subject}}</p>
                 <p>{{body}}</p>
@@ -40,7 +41,8 @@ export default {
             body: this.email.body,
             from: this.email.from,
             isSelected: false,
-            isRead: this.email.isRead
+            isRead: this.email.isRead,
+            isStarred: this.email.isStarred
         }
     },
     computed: {
@@ -72,7 +74,10 @@ export default {
         compEnvelopeClasses() {
             if (this.isRead) return 'far fa-envelope-open'
             else return 'far fa-envelope'
-
+        },
+        compStarClasses() {
+            if (this.isStarred) return 'fas fa-star'
+            else return 'far fa-star'
         }
     },
     created() {
@@ -91,8 +96,11 @@ export default {
         deleteEmail() {
             emailService.deleteEmail(this.email.id)
             this.$router.replace('/email')
-
         },
+        starOrUnstarThis() {
+            this.isStarred = !this.isStarred;
+            emailService.updateEmail(this.email.id, 'isStarred', this.isStarred);
+        }
 
 
     },

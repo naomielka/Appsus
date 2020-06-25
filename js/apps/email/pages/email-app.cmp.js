@@ -8,10 +8,10 @@ import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     template: `
-    <div class="flex row">
+    <div class="email-app flex row">
         <email-sidebar></email-sidebar>
         <div class="flex col width-all">
-        <section class="flex row space-between">
+        <section class="top-bar flex row space-between align-center">
             <email-filter @filtered="getFilter"></email-filter>
             <email-status ></email-status>
         </section>

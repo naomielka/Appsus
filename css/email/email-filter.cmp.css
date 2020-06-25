@@ -1,0 +1,8 @@
+.email-filter input,
+.email-filter select {
+    background-color: rgba(221, 221, 221, 0.719);
+    padding: 7px;
+    border-radius: 5px;
+    margin: 10px;
+    border: none;
+}

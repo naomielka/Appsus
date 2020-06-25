@@ -11,15 +11,14 @@ export const emailService = {
 }
 
 var gEmails = [
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '14JKI', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '255FF', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '12MK0', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '689NJ', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '45JUK', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '5JKI5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'KL95J', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
     { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
 
 ]
