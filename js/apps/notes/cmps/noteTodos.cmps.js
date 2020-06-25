@@ -13,6 +13,7 @@ export default {
               <ul v-for='(todo,idx) in info.todos'>
                   <singleTodo v-if='isUpdating === false' :todo="todo"> </singleTodo>
                   <input v-model='todo.txt' v-if='isUpdating===true' type="text"/>
+                  <button @click='deleteTodo(idx)' v-if='isUpdating === true'>D</button>
              </ul>
              <div v-if='addingTodo'>
                   <input v-model='todoToAdd' type="text"/>
@@ -79,6 +80,10 @@ export default {
             })
             this.todoToAdd = ''
             this.addingTodo = false
+        },
+        deleteTodo(idx) {
+            this.info.todos.splice(idx, 1)
+
         }
     },
     computed: {
