@@ -13,14 +13,14 @@ export const emailService = {
 
 var gEmails = [
     { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '14JKI', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '255FF', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '12MK0', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '689NJ', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '45JUK', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '5JKI5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: 'KL95J', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '14JKI', from: 'may', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '255FF', from: 'amit', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '12MK0', from: 'ellah', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '689NJ', from: 'tal', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '45JUK', from: 'oren', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '5JKI5', from: 'hila', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'KL95J', from: 'taia', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'idan', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
 
 ]
 var gDeletedEmails = []
@@ -65,10 +65,12 @@ function deleteEmail(emailId, isPermenent = false) {
         var emailList = getEmailsFromPromise('deletedEmails')
         var emailIdx = emailList.findIndex((email) => email.id === emailId);
         emailList.splice(emailIdx, 1)
+        console.log(emailIdx)
         utilsService.storeToStorage('deletedEmails', emailList)
     } else {
         var emailList = getEmailsFromPromise('emails')
         var emailIdx = emailList.findIndex((email) => email.id === emailId);
+        console.log(emailIdx)
         var deletedEmail = emailList.find((email) => email.id === emailId);
         gDeletedEmails.unshift(deletedEmail)
         emailList.splice(emailIdx, 1)

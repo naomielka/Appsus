@@ -24,8 +24,6 @@ export default {
                     <!-- להוסיף גם RESPOND -->
                         <button @click="deleteEmail">delete</button>
                         <button  @click="openEmailFullScreen">full screen</button>
-                        <!-- כשהמשתמש בפול סקרין אז שהכפתור הזה לא יופיע ובמקומו
-                         יופיע כפתור של חזרה לאימיילס -->
                     </div>
             </section>
             <h3>from: {{email.from}}</h3>
