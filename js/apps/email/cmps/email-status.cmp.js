@@ -4,19 +4,21 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     template: `
     <div >
-{{readEmails}}
+        <span>Read Emails: {{readEmails}}</span>
+        <span>Unread Emails: {{unreadEmails}}</span>
     </div>`,
     data() {
         return {
             readEmails: 0,
+            unreadEmails: 0
         }
     },
     computed: {},
     methods: {
         countEmails() {
-            this.readEmails = emailService.countReadEmails()
-            console.log('triggered count');
-
+            var emailCount = emailService.countReadEmails()
+            this.readEmails = emailCount.readEmailsCount
+            this.unreadEmails = emailCount.unreadEmailsCount
         }
 
     },

@@ -4,8 +4,11 @@ export default {
     props: ['email'],
     template: `
     <div class="flex col">
-        <section v-bind:class="compClasses" @click="openEmail">
+        <section v-bind:class="compEmailClasses" @click="openEmail">
             <div class="img-container flex align-center justify-center">{{senderFirstLetter}}</div>
+            <!-- <i v-if="this.email.isStarred" class="fas fa-star"></i> -->
+            <!-- <i @click="starred" class="far fa-star"></i> -->
+            <i v-bind:class="compEnvelopeClasses"></i>
             <div class="content flex col">
                 <p>From: {{from}}</p>
                 <p>Subject: {{subject}}</p>
@@ -32,6 +35,7 @@ export default {
     `,
     data() {
         return {
+
             subject: this.email.subject,
             body: this.email.body,
             from: this.email.from,
@@ -57,13 +61,17 @@ export default {
             var letter = from.charAt(0).toUpperCase()
             return letter
         },
-        compClasses() {
+        compEmailClasses() {
             return {
                 read: this.isRead,
                 'email-preview': true,
                 flex: true,
                 row: true,
             }
+        },
+        compEnvelopeClasses() {
+            if (this.isRead) return 'far fa-envelope-open'
+            else return 'far fa-envelope'
 
         }
     },
@@ -90,7 +98,7 @@ export default {
     },
     components: {
         eventBus
-    }
+    },
 }
 
 

@@ -33,3 +33,12 @@
 .read {
     font-weight: 400;
 }
+
+.email-preview .fa-star {
+    color: gold;
+}
+
+.email-preview .fa-envelope-open,
+.email-preview .fa-envelope {
+    font-size: 1.5rem;
+}

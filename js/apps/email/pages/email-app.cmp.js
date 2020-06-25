@@ -1,18 +1,22 @@
 import { emailService } from '../../../services/email.service.js'
 import { utilsService } from '../../../services/utils.service.js'
 import emailList from '../cmps/email-list.cmp.js';
+import emailSidebar from '../cmps/email-sidebar.cmp.js';
 import emailStatus from '../cmps/email-status.cmp.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 import { eventBus } from '../../../services/event-bus.service.js'
-// import emailFilter from '../cmps/email-filter.cmp.js';
 
 export default {
     template: `
-    <div>
-    <router-link to="/newEmail">Compose</router-link>
-        <email-filter @filtered="getFilter"></email-filter>
-        <email-status ></email-status>
+    <div class="flex row">
+        <email-sidebar></email-sidebar>
+        <div class="flex col width-all">
+        <section class="flex row space-between">
+            <email-filter @filtered="getFilter"></email-filter>
+            <email-status ></email-status>
+        </section>
         <email-list :emails="emailsToShow"></email-list>
+    </div>
     </div>`,
     data() {
         return {
@@ -71,6 +75,7 @@ export default {
         emailList,
         emailStatus,
         eventBus,
-        emailFilter
+        emailFilter,
+        emailSidebar
     }
 }

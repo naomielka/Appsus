@@ -11,15 +11,16 @@ export const emailService = {
 }
 
 var gEmails = [
-    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '14JKI', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '255FF', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '12MK0', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '689NJ', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '45JUK', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: '5JKI5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: 'KL95J', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
 
 ]
 
@@ -30,9 +31,11 @@ function getEmails() {
 function getEmailsFromPromise() {
     var emailList = [];
     if (utilService.loadFromStorage('emails')) {
+        console.log('check')
         emailList = utilService.loadFromStorage('emails');
         return emailList;
     } else {
+        console.log('check2')
         getEmails()
             .then((emails) => {
                 emailList = emails;
@@ -63,6 +66,7 @@ function composeNewEmail(to, subject, body) {
         subject: subject,
         body: body,
         isRead: false,
+        isStarred: false,
         sentAt: new Date()
     }
     var emailList = getEmailsFromPromise()
@@ -72,14 +76,12 @@ function composeNewEmail(to, subject, body) {
 
 function countReadEmails() {
     var emailList = getEmailsFromPromise()
-    console.log(emailList)
     var readEmails = []
     emailList.find((email) => {
         if (email.isRead) readEmails.push(email);
     })
-
-    return readEmails.length
-
+    var unreadEmailsCount = emailList.length - readEmails.length
+    return { readEmailsCount: readEmails.length, unreadEmailsCount }
 }
 
 function updateEmail(emailId, key, value) {
