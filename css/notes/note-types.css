@@ -43,8 +43,8 @@
 
 .noteTodos {
     background-color: blueviolet;
-    width: 300px;
-    height: 200px;
+    min-width: 300px;
+    min-height: 200px;
     margin: 10px;
     position: relative;
 }
@@ -55,4 +55,5 @@
 
 .todoDone {
     text-decoration-line: line-through;
+    cursor: pointer;
 }

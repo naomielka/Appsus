@@ -7,8 +7,8 @@ export default {
           <section :style='{background: noteStyle}' class= 'noteImg'>
             <h3 v-if='isUpdating === false' > {{info.title}}</h3>  
             <input v-model='info.title' v-if='isUpdating===true' type="text"/>
-            <img  v-if='isUpdating === false'  :src= 'info.url'> 
-            <input v-model='info.url' v-if='isUpdating===true' type="text"/> 
+            <img   v-if='isUpdating === false'  :src= 'info.url'> 
+            <input placeholder='Enter URL' v-model='info.url' v-if='isUpdating===true' type="text"/> 
             
             <div v-if='pickingColor === false' class='buttons-wrapper'>
                   <button @click='pickingColor = !pickingColor' class='delete-button'>C</button>

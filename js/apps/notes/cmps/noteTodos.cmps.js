@@ -1,25 +1,47 @@
 import { notesService } from '../../../services/notes-service.js'
+import singleTodo from './noteTodo.cmps.js'
+import colorPick from './noteColor.cmps.js'
+
 
 
 export default {
     template: `
-          <section class= 'noteTodos'>
-            <h4> {{info.label}} </h4>
+          <section :style='{background: noteStyle}' class= 'noteTodos'>
+            <h4 v-if='isUpdating===false'> {{info.label}} </h4>
+            <input v-model='info.label' v-if='isUpdating===true' type="text"/>
+
               <ul v-for='(todo,idx) in info.todos'>
-                  <li @click='todoClicked(idx)' :class='{todoDone: info.todos[idx].doneAt }'> {{info.todos[idx].txt }} </li>
+                  <singleTodo v-if='isUpdating === false' :todo="todo"> </singleTodo>
+                  <input v-model='todo.txt' v-if='isUpdating===true' type="text"/>
              </ul>
-             <div class='buttons-wrapper'>
-             <button @click='deleteById' class='delete-button'>C</button>
-             <button @click='deleteById' class='delete-button'>U</button>
-             <button @click='deleteById' class='delete-button'>D</button>
-            </div>
+             <div v-if='addingTodo'>
+                  <input v-model='todoToAdd' type="text"/>
+                  <button @click='pushTodo(todoToAdd)'>Add</button>
+                
+                </div>
+            
+             <div v-if='pickingColor === false' class='buttons-wrapper'>
+                  <button @click='addTodoMode' class='delete-button'>+</button>
+                  <button @click='pickingColor = !pickingColor' class='delete-button'>C</button>
+                  <button @click='isUpdating = !isUpdating' class='delete-button'>U</button>
+                  <button @click='deleteById' class='delete-button'>D</button>
+              </div>
+            <color-pick @colorHover='previewColor' @colorPicked='applyColor' v-else-if='pickingColor === true'/>
+
 
           </section>
           `,
     props: ["info"],
     data() {
         return {
-            val: ""
+            val: "",
+            isUpdating: false,
+            noteStyle: 'purple',
+            pickingColor: false,
+            isHovering: false,
+            addingTodo: false,
+            todoToAdd: ''
+
         };
     },
     methods: {
@@ -27,16 +49,8 @@ export default {
             this.$emit("setVal", this.val);
         },
         todoClicked(idx) {
-            if (this.info.todos[idx].isDone) {
-                this.info.todos[idx].isDone = null
-                let prevState = this.info.todos[idx]
-                this.info.todos.splice(idx, 1, prevState)
-
-            } else { this.info.todos[idx].isDone = new Date() }
-
-            console.log(idx);
+            this.info.todos[idx].isDone = !this.info.todos[idx].isDone
             console.log(this.info.todos[idx].isDone);
-
 
 
         },
@@ -44,6 +58,27 @@ export default {
             console.log(this.info.id);
             notesService.deleteNote(this.info.id)
 
+        },
+        applyColor(color) {
+            this.pickingColor = false
+            this.noteStyle = color
+            console.log(color);
+
+        },
+        previewColor(color) {
+            this.noteStyle = color
+        },
+        addTodoMode() {
+            this.addingTodo = !this.addingTodo
+
+        },
+        pushTodo(todo) {
+            this.info.todos.push({
+                txt: todo,
+                doneAt: false
+            })
+            this.todoToAdd = ''
+            this.addingTodo = false
         }
     },
     computed: {
@@ -53,6 +88,8 @@ export default {
 
     },
     components: {
-        notesService
+        notesService,
+        singleTodo,
+        colorPick
     }
 };
