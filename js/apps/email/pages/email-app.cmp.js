@@ -33,7 +33,6 @@ export default {
         this.getEmails('emails')
         this.getEmails('deletedEmails')
         this.emailsToShow = this.renderEmailList('all', 'all')
-            // eventbus.$on('renderList', (filterType) => renderEmailList(filterType))
 
     },
     methods: {
@@ -82,9 +81,12 @@ export default {
             return emailsToShow
         },
         deleteEmail(emailId) {
-            if (this.isDeleted) {
+            var email = emailService.getEmailById(emailId)
+            if (email.isDeleted) {
+                console.log(emailId)
                 emailService.deleteEmail(emailId, true)
             } else {
+                console.log(emailId)
                 this.isDeleted = true;
                 emailService.updateEmail(emailId, 'isDeleted', this.isDeleted);
                 emailService.deleteEmail(emailId)

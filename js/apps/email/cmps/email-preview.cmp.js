@@ -99,6 +99,7 @@ export default {
         },
         deleteEmail() {
             this.$emit('delete', this.email.id)
+            console.log(this.email.id)
         },
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;
