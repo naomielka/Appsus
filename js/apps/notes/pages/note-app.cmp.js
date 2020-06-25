@@ -12,10 +12,11 @@ export default {
 <input :placeholder= 'placeHolder' v-model='txt' type="text"/> 
 <br/>
 <input placeholder= 'Image Url' v-model='imgUrl' v-if='type ==="noteImg"' type="text"/>
- <button @click= 'changeType("noteText")'>T</button>
- <button @click= 'changeType("noteTodos")'>L</button>
- <button @click= 'changeType("noteImg")' >I</button>
- <button @click= 'changeType("noteVideo") '>V</button>
+<br/>
+ <button @click= 'changeType("noteText")'><i class="far fa-sticky-note"></i></button>
+ <button @click= 'changeType("noteTodos")'><i class="fas fa-list"></i></button>
+ <button @click= 'changeType("noteImg")' ><i class="fas fa-image"></i></button>
+ <button @click= 'changeType("noteVideo") '><i class="fas fa-video"></i></button>
  <button @click= 'createNote(type)' >Create</button>
 <section class='notes-container'>
 <div  v-for='(note, idx) in notes'> 
