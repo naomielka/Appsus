@@ -8,7 +8,11 @@ export default {
               <ul v-for='(todo,idx) in info.todos'>
                   <li @click='todoClicked(idx)' :class='{todoDone: info.todos[idx].doneAt }'> {{info.todos[idx].txt }} </li>
              </ul>
+             <div class='buttons-wrapper'>
+             <button @click='deleteById' class='delete-button'>C</button>
+             <button @click='deleteById' class='delete-button'>U</button>
              <button @click='deleteById' class='delete-button'>D</button>
+            </div>
 
           </section>
           `,

@@ -1,20 +1,26 @@
 .noteText {
-    background-color: blue;
+    /* background-color: blue; */
     width: 300px;
     height: 200px;
     margin: 10px;
     position: relative;
 }
 
-.noteText:hover .delete-button {
+.noteText:hover .buttons-wrapper {
     display: block;
 }
 
-.delete-button {
+.buttons-wrapper {
     position: absolute;
     bottom: 5px;
     right: 10px;
     display: none;
+}
+
+.color-pallet {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
 }
 
 .noteImg {
@@ -22,6 +28,11 @@
     width: 300px;
     height: 200px;
     margin: 10px;
+    position: relative;
+}
+
+.noteImg:hover .buttons-wrapper {
+    display: block;
 }
 
 .noteImg img {
@@ -38,7 +49,7 @@
     position: relative;
 }
 
-.noteTodos:hover .delete-button {
+.noteTodos:hover .buttons-wrapper {
     display: block;
 }
 
