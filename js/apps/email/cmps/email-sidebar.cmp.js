@@ -1,11 +1,25 @@
 export default {
     template: `
-    <div class="flex col">
-        <h3>sidebar wassappppp</h3>
+    <div class="email-sidebar flex col align-center">
         <router-link to="/newEmail">Compose</router-link>
-        <button>Starred</button>
+        <button @click="filterInbox">Inbox</button>
+        <button @click="filterByStar">Starred</button>
     </div>
    `,
-    methods: {},
+    data() {
+        return {
+            filterby: {
+
+            }
+        }
+    },
+    methods: {
+        filterByStar() {
+            this.$emit('filtered', 'isStarred', 'star')
+        },
+        filterInbox() {
+            this.$emit('filtered', 'all', 'all')
+        }
+    },
     components: {}
 }
