@@ -63,6 +63,8 @@ export default {
                         emailsToShow = this.emails.filter(email => email.isRead === true);
                     } else if (this.filterBy === 'unread') {
                         emailsToShow = this.emails.filter(email => email.isRead === false);
+                    } else {
+                        return this.emails;
                     }
                 } else if (this.filterType === 'searchStr') {
                     emailsToShow = this.emails.filter(email => {
@@ -83,7 +85,6 @@ export default {
         deleteEmail(emailId) {
             var email = emailService.getEmailById(emailId)
             if (email.isDeleted) {
-                console.log(email)
                 emailService.deleteEmail(emailId, true)
             } else {
                 email.isDeleted = true;
@@ -93,7 +94,6 @@ export default {
             this.getEmails('emails')
             this.getEmails('deletedEmails')
             this.emailsToShow = this.renderEmailList()
-            console.log(this.emailsToShow)
         }
     },
     mounted() {},

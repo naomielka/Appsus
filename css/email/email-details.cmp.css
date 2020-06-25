@@ -1,0 +1,30 @@
+.email-details-container .email-details,
+.email-details-container .respond {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.562);
+    padding: 20px;
+    margin: 10px auto;
+    border: 1px rgba(128, 128, 128, 0.171) solid;
+}
+
+
+/* .email-details-container .email-details p:first-of-type{
+    padding-bottom: 5px;
+    border-bottom: gray;
+
+} */
+
+.email-details-container .respond span {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.email-details-container .respond textarea {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.email-details-container .respond form {
+    margin: 0 auto;
+    width: 90%;
+}

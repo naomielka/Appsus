@@ -3,6 +3,7 @@ export default {
     <div class="email-filter">
     <input @input="filterBySearchStr" v-model="filterBy.searchStr" type="text" placeholder="Search Email">
     <select @change="filterByReadStat" v-model="filterBy.readStatus">
+            <option value="all">All</option>
             <option value="read">Read</option>
             <option value="unread">Unread</option>
     </select>
