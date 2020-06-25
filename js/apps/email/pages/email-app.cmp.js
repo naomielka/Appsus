@@ -42,7 +42,7 @@ export default {
             this.filterType = filterType;
             this.emailsToShow = this.renderEmailList()
         },
-        getEmails(key) {
+        getEmails(key = 'emails') {
             if (utilsService.loadFromStorage(key)) {
                 this[key] = utilsService.loadFromStorage(key);
             } else {
@@ -83,17 +83,17 @@ export default {
         deleteEmail(emailId) {
             var email = emailService.getEmailById(emailId)
             if (email.isDeleted) {
-                console.log(emailId)
+                console.log(email)
                 emailService.deleteEmail(emailId, true)
             } else {
-                console.log(emailId)
-                this.isDeleted = true;
-                emailService.updateEmail(emailId, 'isDeleted', this.isDeleted);
+                email.isDeleted = true;
+                emailService.updateEmail(emailId, 'isDeleted', email.isDeleted);
                 emailService.deleteEmail(emailId)
             }
             this.getEmails('emails')
             this.getEmails('deletedEmails')
             this.emailsToShow = this.renderEmailList()
+            console.log(this.emailsToShow)
         }
     },
     mounted() {},

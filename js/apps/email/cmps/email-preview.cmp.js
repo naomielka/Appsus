@@ -80,9 +80,7 @@ export default {
             else return 'far fa-star'
         }
     },
-    created() {
-        console.log(this.email)
-    },
+    created() {},
     methods: {
         openEmail() {
             if (this.isDeleted === true) {
@@ -99,7 +97,6 @@ export default {
         },
         deleteEmail() {
             this.$emit('delete', this.email.id)
-            console.log(this.email.id)
         },
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;
