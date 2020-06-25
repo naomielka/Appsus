@@ -2,6 +2,7 @@ import { myRouter } from './routes.js'
 import notesApp from './apps/notes/pages/note-app.cmp.js';
 import emailApp from './apps/email/pages/email-app.cmp.js';
 import navbar from './cross-app-cmps/navbar.cmp.js'
+import appHeader from './cross-app-cmps/appHeader.cmp.js'
 
 
 new Vue({
@@ -9,7 +10,7 @@ new Vue({
     router: myRouter,
     template: `
     <div>
-        <!-- <app-header></app-header> -->
+        <app-header></app-header>
         <navbar></navbar>
         <main>
             <!-- <email-app></email-app> -->
@@ -18,7 +19,7 @@ new Vue({
     </div> 
     `,
     components: {
-        // appHeader,
+        appHeader,
         emailApp,
         notesApp,
         navbar,

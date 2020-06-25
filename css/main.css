@@ -9,7 +9,8 @@
 
 /* CROSS-APP-ELEMETS */
 
-@import './cross-app-elements/navbar.css';
+@import './cross-app-elements/navbar.cmp.css';
+@import './cross-app-elements/header.cmp.css';
 
 /* EMAIL */
 
