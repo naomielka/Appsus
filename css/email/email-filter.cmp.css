@@ -6,3 +6,8 @@
     margin: 10px;
     border: none;
 }
+
+.email-filter option {
+    background-color: rgba(221, 221, 221, 0.719);
+    border: none;
+}

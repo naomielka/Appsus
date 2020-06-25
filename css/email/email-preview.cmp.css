@@ -6,6 +6,10 @@
     background-color: rgb(255, 255, 255, 0.6);
 }
 
+.email-preview .content-container {
+    max-width: 980px;
+}
+
 .email-preview:hover {
     cursor: pointer;
 }
@@ -23,6 +27,7 @@
 .email-preview .sent-at {
     position: absolute;
     right: 10px;
+    /* margin-right: 10%; */
 }
 
 .email-preview .content {

@@ -8,15 +8,17 @@ import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     template: `
-    <div class="email-app flex row">
-        <email-sidebar  @filtered="getFilter"></email-sidebar>
-        <div class="flex col width-all">
-        <section class="top-bar flex row space-between align-center">
-            <email-filter @filtered="getFilter"></email-filter>
-            <email-status ></email-status>
-        </section>
-        <email-list :emails="emailsToShow" @delete="deleteEmail"></email-list>
-    </div>
+    <div class="app-container">
+        <div class="email-app flex row">
+            <email-sidebar  @filtered="getFilter"></email-sidebar>
+            <div class="flex col width-all">
+                <section class="top-bar flex row space-between align-center">
+                    <email-filter @filtered="getFilter"></email-filter>
+                    <email-status ></email-status>
+                </section>
+                <email-list :emails="emailsToShow" @delete="deleteEmail"></email-list>
+            </div>
+        </div>
     </div>`,
     data() {
         return {
