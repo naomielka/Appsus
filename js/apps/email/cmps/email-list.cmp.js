@@ -13,6 +13,8 @@ export default {
     methods: {
         deleteEmail(emailId) {
             this.$emit('delete', emailId)
+            console.log(emailId)
+
         }
     },
     components: {
