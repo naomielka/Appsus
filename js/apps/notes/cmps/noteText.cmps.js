@@ -2,7 +2,7 @@ import { notesService } from '../../../services/notes-service.js'
 import colorPick from './noteColor.cmps.js'
 export default {
     template: `
-          <section  :style='{background: noteStyle}' class= 'noteText'>
+          <section @keyup.enter="isUpdating = false" :style='{background: noteStyle}' class= 'noteText'>
               <h4 v-if='isUpdating === false'> {{info.txt}}</h4>
               <input v-model='info.txt' v-if='isUpdating===true' type="text"/>
               <div v-if='pickingColor === false' class='buttons-wrapper'>

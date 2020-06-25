@@ -6,7 +6,7 @@ import colorPick from './noteColor.cmps.js'
 
 export default {
     template: `
-          <section :style='{background: noteStyle}' class= 'noteTodos'>
+          <section @keyup.enter="isUpdating = false" :style='{background: noteStyle}' class= 'noteTodos'>
             <h4 v-if='isUpdating===false'> {{info.label}} </h4>
             <input v-model='info.label' v-if='isUpdating===true' type="text"/>
 
