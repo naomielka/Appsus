@@ -21,13 +21,46 @@ export default {
     data() {
         return {
             emails: [],
+            emailsToShow: [],
             filterBy: null,
             filterType: null
         }
     },
     computed: {
-        emailsToShow() {
-            if (this.filterBy === null && this.filterType === null || this.filterType === 'all') {
+
+    },
+    created() {
+        this.getEmails('emails')
+        this.getEmails('deletedEmails')
+        this.emailsToShow = this.renderEmailList()
+        eventbus.$on('renderList', (filterType) => renderEmailList(filterType))
+
+    },
+    methods: {
+        getFilter(filter, filterType) {
+            this.getEmails()
+            this.filterBy = filter;
+            this.filterType = filterType;
+        },
+        getEmails(key) {
+            if (utilsService.loadFromStorage(key)) {
+                this[key] = utilsService.loadFromStorage(key);
+            } else {
+                this[key] = emailService.getEmails()
+                    .then((emails) => {
+                        this[key] = emails;
+                        utilsService.storeToStorage(key, emails);
+                    })
+            }
+        },
+        renderEmailList(filterType = null, filterBy = null) {
+            console.log('koko')
+            if (filterType) {
+                this.filterType = filterType
+                this.filterBy = filterBy
+            }
+            // emailsToShow() {
+            if (this.filterBy === null || this.filterType === null || this.filterType === 'all') {
                 return this.emails;
             } else {
                 var emailsToShow = []
@@ -47,32 +80,15 @@ export default {
                     })
                 } else if (this.filterType === 'star') {
                     emailsToShow = this.emails.filter(email => email.isStarred === true)
+                } else if (this.filterType === 'deleted') {
+                    emailsToShow = this.deletedEmails
                 }
             }
             return emailsToShow
         }
+        // }
     },
-    created() {
-        this.getEmails()
-    },
-    methods: {
-        getFilter(filter, filterType) {
-            this.getEmails()
-            this.filterBy = filter;
-            this.filterType = filterType;
-        },
-        getEmails() {
-            if (utilsService.loadFromStorage('emails')) {
-                this.emails = utilsService.loadFromStorage('emails');
-            } else {
-                this.emails = emailService.getEmails()
-                    .then((emails) => {
-                        this.emails = emails;
-                        utilsService.storeToStorage('emails', emails);
-                    })
-            }
-        }
-    },
+    mounted() {},
     components: {
         emailList,
         emailStatus,

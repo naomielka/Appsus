@@ -36,13 +36,13 @@ export default {
     `,
     data() {
         return {
-
             subject: this.email.subject,
             body: this.email.body,
             from: this.email.from,
             isSelected: false,
             isRead: this.email.isRead,
-            isStarred: this.email.isStarred
+            isStarred: this.email.isStarred,
+            isDeleted: this.email.isDeleted
         }
     },
     computed: {
@@ -81,21 +81,33 @@ export default {
         }
     },
     created() {
-        // emailService.getImgContainerColor()
+        console.log(this.email)
     },
     methods: {
         openEmail() {
-            this.isRead = true;
-            emailService.updateEmail(this.email.id, 'isRead', this.isRead);
-            eventBus.$emit('emailRead')
-            this.isSelected = !this.isSelected;
+            if (this.isDeleted === true) {
+                this.isSelected = !this.isSelected;
+            } else {
+                this.isRead = true;
+                emailService.updateEmail(this.email.id, 'isRead', this.isRead, );
+                eventBus.$emit('emailRead')
+                this.isSelected = !this.isSelected;
+            }
         },
         openEmailFullScreen() {
             this.$router.push(`email/${this.email.id}`)
         },
         deleteEmail() {
-            emailService.deleteEmail(this.email.id)
-            this.$router.replace('/email')
+            if (this.isDeleted === true) {
+                emailService.deleteEmail(this.email.id, true)
+                eventBus.$emit('renderList', 'deleted')
+            } else {
+                this.isDeleted = true;
+                emailService.updateEmail(this.email.id, 'isDeleted', this.isDeleted);
+                emailService.deleteEmail(this.email.id)
+                eventBus.$emit('renderList', 'all')
+                    // this.$router.replace('/email')
+            }
         },
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;

@@ -7,55 +7,75 @@ export const emailService = {
     composeNewEmail,
     countReadEmails,
     updateEmail,
-    getImgContainerColor
+    getImgContainerColor,
+    getEmailsFromPromise
 }
 
 var gEmails = [
-    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '14JKI', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '255FF', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '12MK0', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '689NJ', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '45JUK', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: '5JKI5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'KL95J', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, sentAt: 1551133930594 },
+    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '14JKI', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '255FF', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '12MK0', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '689NJ', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '45JUK', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '5JKI5', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'KL95J', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'Jason', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
 
 ]
+var gDeletedEmails = []
 
-function getEmails() {
-    return Promise.resolve(gEmails)
+function getEmails(key = 'emails') {
+    if (key === 'emails') return Promise.resolve(gEmails)
+    else return Promise.resolve(gDeletedEmails)
 }
 
-function getEmailsFromPromise() {
+// function getDeletedEmails() {
+//     return Promise.resolve(gDeletedEmails)
+// }
+
+function getEmailsFromPromise(key) {
     var emailList = [];
-    if (utilService.loadFromStorage('emails')) {
-        console.log('check')
-        emailList = utilService.loadFromStorage('emails');
+    if (utilService.loadFromStorage(key)) {
+        emailList = utilService.loadFromStorage(key);
         return emailList;
     } else {
-        console.log('check2')
         getEmails()
             .then((emails) => {
                 emailList = emails;
-                utilService.storeToStorage('emails', emails);
+                utilService.storeToStorage(key, emails);
                 return emailList;
             })
     }
 
 }
 
-function getEmailById(emailId) {
-    var emailList = getEmailsFromPromise()
+function getEmailById(emailId, isDeleted = false) {
+    var emailList = []
+    if (isDeleted === true) {
+        emailList = getEmailsFromPromise('deletedEmails')
+    } else {
+        emailList = getEmailsFromPromise('emails')
+    }
     var email = emailList.find(email => email.id === emailId)
     return email;
 }
 
-function deleteEmail(emailId) {
-    var emailList = getEmailsFromPromise()
-    var emailIdx = emailList.findIndex((email) => email.id === emailId);
-    emailList.splice(emailIdx, 1)
-    utilsService.storeToStorage('emails', emailList)
+function deleteEmail(emailId, isPermenent = false) {
+    if (isPermenent === true) {
+        var emailList = getEmailsFromPromise('deletedEmails')
+        var emailIdx = emailList.findIndex((email) => email.id === emailId);
+        emailList.splice(emailIdx, 1)
+        utilsService.storeToStorage('deletedEmails', gDeletedEmails)
+    } else {
+        var emailList = getEmailsFromPromise('emails')
+        var emailIdx = emailList.findIndex((email) => email.id === emailId);
+        var deletedEmail = emailList.find((email) => email.id === emailId);
+        gDeletedEmails.unshift(deletedEmail)
+        emailList.splice(emailIdx, 1)
+        utilsService.storeToStorage('emails', emailList)
+        utilsService.storeToStorage('deletedEmails', gDeletedEmails)
+    }
 }
 
 function composeNewEmail(to, subject, body) {
@@ -66,15 +86,16 @@ function composeNewEmail(to, subject, body) {
         body: body,
         isRead: false,
         isStarred: false,
+        isDeleted: false,
         sentAt: new Date()
     }
-    var emailList = getEmailsFromPromise()
+    var emailList = getEmailsFromPromise('emails')
     emailList.unshift(newEmail)
     utilsService.storeToStorage('emails', emailList)
 }
 
 function countReadEmails() {
-    var emailList = getEmailsFromPromise()
+    var emailList = getEmailsFromPromise('emails')
     var readEmails = []
     emailList.find((email) => {
         if (email.isRead) readEmails.push(email);
@@ -83,10 +104,10 @@ function countReadEmails() {
     return { readEmailsCount: readEmails.length, unreadEmailsCount }
 }
 
-function updateEmail(emailId, key, value) {
-    var email = getEmailById(emailId);
+function updateEmail(emailId, key, value, isDeleted) {
+    var email = getEmailById(emailId, isDeleted);
     email[key] = value;
-    var emailList = getEmailsFromPromise();
+    var emailList = getEmailsFromPromise('emails');
     var emailIdx = emailList.findIndex((email) => email.id === emailId);
     emailList.splice(emailIdx, 1, email)
     utilsService.storeToStorage('emails', emailList)

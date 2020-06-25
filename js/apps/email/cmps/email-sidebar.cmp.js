@@ -4,6 +4,7 @@ export default {
         <router-link to="/newEmail">Compose</router-link>
         <button @click="filterInbox">Inbox</button>
         <button @click="filterByStar">Starred</button>
+        <button @click="filterByDeleted">Trash</button>
     </div>
    `,
     data() {
@@ -19,6 +20,9 @@ export default {
         },
         filterInbox() {
             this.$emit('filtered', 'all', 'all')
+        },
+        filterByDeleted() {
+            this.$emit('filtered', 'deleted', 'deleted')
         }
     },
     components: {}
