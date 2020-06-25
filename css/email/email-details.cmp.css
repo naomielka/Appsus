@@ -7,12 +7,12 @@
     border: 1px rgba(128, 128, 128, 0.171) solid;
 }
 
-
-/* .email-details-container .email-details p:first-of-type{
-    padding-bottom: 5px;
-    border-bottom: gray;
-
-} */
+.email-details-container .email-details p:last-of-type {
+    /* background-color: rgb(255, 255, 255); */
+    padding: 5px;
+    margin: 10px 0;
+    border-top: rgba(128, 128, 128, 0.37) 1px solid;
+}
 
 .email-details-container .respond span {
     font-size: 1.1rem;

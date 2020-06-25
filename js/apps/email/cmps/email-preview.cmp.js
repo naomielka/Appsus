@@ -21,7 +21,6 @@ export default {
             <section class="email-header flex space-between">
                 <h1>Subject: {{email.subject}}</h1> 
                 <div class="action-buttons">
-                    <!-- להוסיף גם RESPOND -->
                         <button @click="deleteEmail">delete</button>
                         <button  @click="openEmailFullScreen">full screen</button>
                     </div>
