@@ -98,16 +98,7 @@ export default {
             this.$router.push(`email/${this.email.id}`)
         },
         deleteEmail() {
-            if (this.isDeleted === true) {
-                emailService.deleteEmail(this.email.id, true)
-                eventBus.$emit('renderList', 'deleted')
-            } else {
-                this.isDeleted = true;
-                emailService.updateEmail(this.email.id, 'isDeleted', this.isDeleted);
-                emailService.deleteEmail(this.email.id)
-                eventBus.$emit('renderList', 'all')
-                    // this.$router.replace('/email')
-            }
+            this.$emit('delete', this.email.id)
         },
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;

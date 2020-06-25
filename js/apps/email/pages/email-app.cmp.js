@@ -15,7 +15,7 @@ export default {
             <email-filter @filtered="getFilter"></email-filter>
             <email-status ></email-status>
         </section>
-        <email-list :emails="emailsToShow"></email-list>
+        <email-list :emails="emailsToShow" @delete="deleteEmail"></email-list>
     </div>
     </div>`,
     data() {
@@ -32,8 +32,8 @@ export default {
     created() {
         this.getEmails('emails')
         this.getEmails('deletedEmails')
-        this.emailsToShow = this.renderEmailList()
-        eventbus.$on('renderList', (filterType) => renderEmailList(filterType))
+        this.emailsToShow = this.renderEmailList('all', 'all')
+            // eventbus.$on('renderList', (filterType) => renderEmailList(filterType))
 
     },
     methods: {
@@ -41,6 +41,7 @@ export default {
             this.getEmails()
             this.filterBy = filter;
             this.filterType = filterType;
+            this.emailsToShow = this.renderEmailList()
         },
         getEmails(key) {
             if (utilsService.loadFromStorage(key)) {
@@ -53,14 +54,8 @@ export default {
                     })
             }
         },
-        renderEmailList(filterType = null, filterBy = null) {
-            console.log('koko')
-            if (filterType) {
-                this.filterType = filterType
-                this.filterBy = filterBy
-            }
-            // emailsToShow() {
-            if (this.filterBy === null || this.filterType === null || this.filterType === 'all') {
+        renderEmailList() {
+            if (this.filterBy === null && this.filterType === null || this.filterType === 'all') {
                 return this.emails;
             } else {
                 var emailsToShow = []
@@ -85,8 +80,19 @@ export default {
                 }
             }
             return emailsToShow
+        },
+        deleteEmail(emailId) {
+            if (this.isDeleted) {
+                emailService.deleteEmail(emailId, true)
+            } else {
+                this.isDeleted = true;
+                emailService.updateEmail(emailId, 'isDeleted', this.isDeleted);
+                emailService.deleteEmail(emailId)
+            }
+            this.getEmails('emails')
+            this.getEmails('deletedEmails')
+            this.emailsToShow = this.renderEmailList()
         }
-        // }
     },
     mounted() {},
     components: {
