@@ -1,0 +1,9 @@
+.social-buttons {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.social-buttons a {
+    margin: 10px 10px 0 0;
+    font-size: 1.7rem;
+}

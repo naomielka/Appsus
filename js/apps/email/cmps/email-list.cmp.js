@@ -5,7 +5,7 @@ export default {
     template: `
     <div>
         <ul class="clean-list">
-            <li v-for="email in emails" :key="email.id">
+            <li class="clean-list" v-for="email in emails" :key="email.id">
                 <email-preview :email="email" @delete="deleteEmail" ></email-preview>
             </li>
         </ul>
