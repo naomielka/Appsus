@@ -2,27 +2,39 @@ const regex = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed
 import { utilsService } from './utils.service.js'
 
 
-function getById() {
+function getNotes() {
     return Promise.resolve(notes);
 }
 
+function getPinnedNotes() {
+    return Promise.resolve(pinnedNotes);
+}
 
+
+var pinnedNotes = [{
+
+        type: "noteText",
+        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: true, }
+    },
+
+];
 var notes = [{
 
         type: "noteText",
-        isPinned: true,
-        info: { txt: "First text note", id: utilsService.getRandomId() }
+
+        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
         type: "noteText",
-        isPinned: true,
-        info: { txt: "second text note!", id: utilsService.getRandomId() }
+
+        info: { txt: "second text note!", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
         type: "noteImg",
         info: {
+            isPinned: false,
             id: utilsService.getRandomId(),
             url: "https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/durable-urls-760x400.png",
             title: "Me playing Mi"
@@ -32,6 +44,7 @@ var notes = [{
     {
         type: "noteTodos",
         info: {
+            isPinned: false,
             id: utilsService.getRandomId(),
             label: "How was it:",
             todos: [{
@@ -46,6 +59,7 @@ var notes = [{
     {
         type: "noteTodos",
         info: {
+            isPinned: false,
             id: utilsService.getRandomId(),
             label: "How was it:",
             todos: [{
@@ -62,19 +76,37 @@ var notes = [{
     {
         type: "noteVideo",
         info: {
+            isPinned: false,
             id: utilsService.getRandomId(),
             src: "https://www.youtube.com/embed/r6hRHTu4HUw",
         }
     },
 ];
 
+
+const moveNote = {
+    pinNote: (noteId) => {
+        let noteIdx = notes.findIndex((note) => note.info.id === noteId);
+        notes[noteIdx].info.isPinned = true
+        pinnedNotes.unshift(notes[noteIdx])
+        notes.splice(noteIdx, 1)
+    },
+    unpinNote: (noteId) => {
+        let noteIdx = pinnedNotes.findIndex((note) => note.info.id === noteId);
+        pinnedNotes[noteIdx].info.isPinned = false
+        notes.unshift(pinnedNotes[noteIdx])
+        pinnedNotes.splice(noteIdx, 1)
+    },
+}
+
 const createNote = {
 
     createTextNote: (txt) => {
         let newNote = {
             type: "noteText",
-            isPinned: false,
+
             info: {
+                isPinned: false,
                 id: utilsService.getRandomId(),
                 txt: txt
             }
@@ -86,6 +118,7 @@ const createNote = {
         let newNote = {
             type: "noteTodos",
             info: {
+                isPinned: false,
                 id: utilsService.getRandomId(),
                 label: txt,
                 todos: [{
@@ -105,6 +138,7 @@ const createNote = {
         let newNote = {
             type: "noteImg",
             info: {
+                isPinned: false,
                 id: utilsService.getRandomId(),
                 url: url,
                 title: txt
@@ -118,6 +152,7 @@ const createNote = {
         let newNote = {
             type: "noteVideo",
             info: {
+                isPinned: false,
                 id: utilsService.getRandomId(),
                 src: 'https://www.youtube.com/embed/' + txt.split(regex)[1],
             }
@@ -138,7 +173,9 @@ function deleteNote(id) {
 
 
 export const notesService = {
-    getById,
+    getNotes,
+    getPinnedNotes,
     createNote,
-    deleteNote
+    deleteNote,
+    moveNote
 }

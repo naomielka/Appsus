@@ -7,17 +7,25 @@ import noteVideo from '../cmps/noteVideo.cmps.js'
 
 export default {
     template: `
-<div >
+<div class='note-app-container'>
 <h2>Testing note</h2>
 <input :placeholder= 'placeHolder' v-model='txt' type="text"/> 
 <br/>
 <input placeholder= 'Image Url' v-model='imgUrl' v-if='type ==="noteImg"' type="text"/>
 <br/>
+ <main-buttons-container>
  <button @click= 'changeType("noteText")'><i class="far fa-sticky-note"></i></button>
  <button @click= 'changeType("noteTodos")'><i class="fas fa-list"></i></button>
  <button @click= 'changeType("noteImg")' ><i class="fas fa-image"></i></button>
  <button @click= 'changeType("noteVideo") '><i class="fas fa-video"></i></button>
  <button @click= 'createNote(type)' >Create</button>
+ </main-buttons-container>
+<section class='pinned-notes-container'>
+<div  v-for='(note, idx) in pinnedNotes'> 
+<component :id='note.info.id' :is="note.type"  :info="note.info"></component>
+
+</div>
+</section>
 <section class='notes-container'>
 <div  v-for='(note, idx) in notes'> 
 <component :id='note.info.id' :is="note.type"  :info="note.info"></component>
@@ -33,6 +41,7 @@ export default {
         return {
             placeHolder: 'Pick a note type',
             notes: null,
+            pinnedNotes: null,
             type: null,
             txt: null,
             videoUrl: null,
@@ -44,7 +53,9 @@ export default {
 
     },
     created() {
-        notesService.getById()
+        notesService.getPinnedNotes()
+            .then(pinnedNotes => this.pinnedNotes = pinnedNotes)
+        notesService.getNotes()
             .then(notes => this.notes = notes)
     },
     methods: {

@@ -1,7 +1,7 @@
 .navbar {
     background-color: rgba(236, 222, 143, 0.5);
     height: 50px;
-    width: 100vw;
+    /* width: 100vw; */
     font-family: bebas;
     font-size: 1.15rem;
 }
