@@ -12,7 +12,7 @@ var gCreators = [{
         githubLink: 'https://github.com/naomielka'
     },
     {
-        img: '../img/yakovs-pic.jpg',
+        img: '../img/yakovs-pic1.jpg',
         name: 'Yakov Zovner',
         about: '25 years old, from Bat Yam.',
         githubLink: 'https://github.com/naomielka'
