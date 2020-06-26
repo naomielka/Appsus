@@ -2,9 +2,11 @@ import { notesService } from '../../../services/notes-service.js'
 import colorPick from './noteColor.cmps.js'
 export default {
     template: `
-          <section @keyup.enter="isUpdating = false" :style='{background: noteStyle}' class= 'noteText'>
+          <section  @mouseleave='pinVisible= false' @mouseover='pinVisible= true' @keyup.enter="isUpdating = false" :style='{background: noteStyle}' class= 'noteText'>
+              
+              <button  @click='onPin(info.id)' class='pin' v-if='pinVisible || info.isPinned'><i class="fas fa-thumbtack"></i></button>
               <h4 v-if='isUpdating === false'> {{info.txt}}</h4>
-              <input v-model='info.txt' v-if='isUpdating===true' type="text"/>
+              <input  v-model='info.txt' v-if='isUpdating===true' type="text"/>
               <div v-if='pickingColor === false' class='buttons-wrapper'>
                   <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></i></button>
                   <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></i></button>
@@ -22,6 +24,7 @@ export default {
             noteStyle: '#fff740',
             pickingColor: false,
             isHovering: false,
+            pinVisible: false
         };
     },
     methods: {
@@ -41,6 +44,15 @@ export default {
         },
         previewColor(color) {
             this.noteStyle = color
+        },
+        onPin(id) {
+            if (this.info.isPinned) {
+                notesService.moveNote.unpinNote(id)
+            } else {
+                notesService.moveNote.pinNote(id)
+                console.log(id);
+            }
+
         }
     },
     computed: {

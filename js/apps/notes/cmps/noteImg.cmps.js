@@ -4,7 +4,9 @@ import colorPick from './noteColor.cmps.js'
 
 export default {
     template: `
-          <section :style='{background: noteStyle}' class= 'noteImg'>
+          <section @mouseleave='pinVisible= false' @mouseover='pinVisible= true' :style='{background: noteStyle}' class= 'noteImg'>
+          <button  @click='onPin(info.id)' class='pin' v-if='pinVisible || info.isPinned'><i class="fas fa-thumbtack"></i></button>
+
             <h3 v-if='isUpdating === false' > {{info.title}}</h3>  
             <input v-model='info.title' v-if='isUpdating===true' type="text"/>
             <img   v-if='isUpdating === false'  :src= 'info.url'> 
@@ -26,6 +28,8 @@ export default {
             isUpdating: false,
             noteStyle: '7afcff',
             isHovering: false,
+            pinVisible: false
+
 
         };
     },
@@ -43,6 +47,15 @@ export default {
         },
         previewColor(color) {
             this.noteStyle = color
+        },
+        onPin(id) {
+            if (this.info.isPinned) {
+                notesService.moveNote.unpinNote(id)
+            } else {
+                notesService.moveNote.pinNote(id)
+                console.log(id);
+            }
+
         }
     },
     components: {

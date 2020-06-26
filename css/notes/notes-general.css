@@ -3,8 +3,24 @@
     flex-wrap: wrap;
 }
 
+.pinned-notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(248, 100, 74, 0.5);
+}
+
 .color-pallet button {
     border: 0px;
     border-radius: 80px;
     background-color: rgb(95, 94, 94);
+}
+
+.note-app-container button:focus {
+    background-color: rgb(247, 163, 107);
+}
+
+.pin {
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
