@@ -11,7 +11,7 @@ export default {
                 <about :creator="creator"></about>
             </li>
         </ul>
-            <section class="nav-homepage flex col">
+            <section class="nav-homepage flex col justify-center">
             <div class="link-bc flex justify-center align-center">
                 <div class="bc-div flex justify-center align-center">
                     <router-link class="nav-button " to="/"> Homepage</router-link>

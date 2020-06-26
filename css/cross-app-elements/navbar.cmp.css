@@ -12,6 +12,11 @@
     padding-right: 30px;
 }
 
+.navbar a:hover {
+    color: #db4343;
+    background-color: rgba(255, 194, 137, 0.527);
+}
+
 .navbar a:not(:last-of-type) {
     border-right: 1px tomato solid;
 }
