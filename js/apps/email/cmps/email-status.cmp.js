@@ -16,11 +16,9 @@ export default {
     computed: {},
     methods: {
         countEmails() {
-            emailService.countReadEmails()
-                .then(emailCount => {
-                    this.readEmails = emailCount.readEmailsCount
-                    this.unreadEmails = emailCount.unreadEmailsCount
-                })
+            var emailCount = emailService.countReadEmails()
+            this.readEmails = emailCount.readEmailsCount
+            this.unreadEmails = emailCount.unreadEmailsCount
         }
 
     },

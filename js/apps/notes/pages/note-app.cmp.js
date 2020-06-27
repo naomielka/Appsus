@@ -74,7 +74,7 @@ export default {
         notesService.getNotes()
             .then(notes => {
                 this.notes = notes
-                this.filteredNotes = notes
+                this.filteredNotes = notes.push(...this.pinnedNotes)
             })
 
     },

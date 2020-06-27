@@ -13,7 +13,7 @@ export default {
                 <div class="content flex col">
                 <p>From: {{from}}</p>
                 <p>Subject: {{subject}}</p>
-                <p>{{bodyPreview}}</p>
+                <p>{{body}}</p>
             </div>
             <span class="sent-at">{{sentAt}}</span>
         </section>
@@ -27,7 +27,7 @@ export default {
             </section>
             <h3>from: {{email.from}}</h3>
             <p>Sent at: {{sentAt}}</p>
-            <p>{{detailedBodyPreview}}</p>
+            <p>{{email.body}}</p>
         </div>
     </div>
     `,
@@ -75,26 +75,16 @@ export default {
         compStarClasses() {
             if (this.isStarred) return 'fas fa-star'
             else return 'far fa-star'
-        },
-        bodyPreview() {
-            if (this.email.body.length < 50) return this.email.body
-            else return `${this.email.body.substring(1,50)}...`
-        },
-        detailedBodyPreview() {
-            if (this.email.body.length < 150) return this.email.body
-            else return `${this.email.body.substring(1,150)}...`
         }
     },
     created() {},
     methods: {
         openEmail() {
             if (this.isDeleted === true) {
-                console.log(this.email)
                 this.isSelected = !this.isSelected;
             } else {
-                console.log(this.email)
                 this.isRead = true;
-                emailService.updateEmail(this.email.id, 'isRead', this.isRead, false);
+                emailService.updateEmail(this.email.id, 'isRead', this.isRead, );
                 eventBus.$emit('emailRead')
                 this.isSelected = !this.isSelected;
             }
@@ -109,6 +99,8 @@ export default {
             this.isStarred = !this.isStarred;
             emailService.updateEmail(this.email.id, 'isStarred', this.isStarred);
         }
+
+
     },
     components: {
         eventBus

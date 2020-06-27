@@ -8,7 +8,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     template: `
-    <div class="app-container" >
+    <div class="app-container">
         <div class="email-app flex row">
             <email-sidebar  @filtered="getFilter"></email-sidebar>
             <div class="flex col width-all">
@@ -22,36 +22,38 @@ export default {
     </div>`,
     data() {
         return {
-            emails: null,
-            emailsToShow: null,
+            emails: [],
+            emailsToShow: [],
             filterBy: null,
-            filterType: null,
-            deletedEmails: null
+            filterType: null
         }
     },
     computed: {
 
     },
     created() {
-        this.getEmails('emails').then(() => {
-            this.getEmails('deletedEmails').then(() => {
-                this.emailsToShow = this.renderEmailList('all', 'all')
-            })
-        })
+        this.getEmails('emails')
+        this.getEmails('deletedEmails')
+        this.emailsToShow = this.renderEmailList('all', 'all')
+
     },
     methods: {
         getFilter(filter, filterType) {
-            this.getEmails('emails').then(() => {
-                this.filterBy = filter;
-                this.filterType = filterType;
-                this.emailsToShow = this.renderEmailList()
-            })
+            this.getEmails()
+            this.filterBy = filter;
+            this.filterType = filterType;
+            this.emailsToShow = this.renderEmailList()
         },
-        getEmails(key) {
-            return emailService.getEmailsFromPromise(key)
-                .then((emailList) => {
-                    this[key] = emailList;
-                })
+        getEmails(key = 'emails') {
+            if (utilsService.loadFromStorage(key)) {
+                this[key] = utilsService.loadFromStorage(key);
+            } else {
+                this[key] = emailService.getEmails()
+                    .then((emails) => {
+                        this[key] = emails;
+                        utilsService.storeToStorage(key, emails);
+                    })
+            }
         },
         renderEmailList() {
             if (this.filterBy === null && this.filterType === null || this.filterType === 'all') {
@@ -83,43 +85,17 @@ export default {
             return emailsToShow
         },
         deleteEmail(emailId) {
-            return emailService.getEmailById(emailId)
-                .then((email) => {
-                    if (email.isDeleted) {
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
-                        }).then((result) => {
-                            if (result.value) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'This eMail has been deleted.',
-                                    'success'
-                                )
-                                emailService.deleteEmail(emailId, true)
-                                this.getEmails('emails').then(() => {
-                                    this.getEmails('deletedEmails').then(() => {
-                                        this.emailsToShow = this.renderEmailList('all', 'all')
-                                    })
-                                })
-                            }
-                        })
-                    } else {
-                        email.isDeleted = true;
-                        emailService.updateEmail(emailId, 'isDeleted', email.isDeleted);
-                        emailService.deleteEmail(emailId, false)
-                        this.getEmails('emails').then(() => {
-                            this.getEmails('deletedEmails').then(() => {
-                                this.emailsToShow = this.renderEmailList('all', 'all')
-                            })
-                        })
-                    }
-                })
+            var email = emailService.getEmailById(emailId)
+            if (email.isDeleted) {
+                emailService.deleteEmail(emailId, true)
+            } else {
+                email.isDeleted = true;
+                emailService.updateEmail(emailId, 'isDeleted', email.isDeleted);
+                emailService.deleteEmail(emailId)
+            }
+            this.getEmails('emails')
+            this.getEmails('deletedEmails')
+            this.emailsToShow = this.renderEmailList()
         }
     },
     mounted() {},

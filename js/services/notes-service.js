@@ -3,11 +3,11 @@ import { utilsService } from './utils.service.js'
 
 
 function getNotes() {
-    return Promise.resolve(notes);
+    return Promise.resolve(utilsService.loadFromStorage('notes'));
 }
 
 function getPinnedNotes() {
-    return Promise.resolve(pinnedNotes);
+    return Promise.resolve(utilsService.loadFromStorage('pinnedNotes'));
 }
 
 
@@ -18,6 +18,8 @@ var pinnedNotes = [{
     },
 
 ];
+
+utilsService.storeToStorage('pinnedNotes', pinnedNotes)
 var notes = [{
         type: "noteEmail",
 
@@ -98,13 +100,23 @@ var notes = [{
     },
 ];
 
+utilsService.storeToStorage('notes', notes)
+
 
 const moveNote = {
     pinNote: (noteId) => {
-        let noteIdx = notes.findIndex((note) => note.info.id === noteId);
-        notes[noteIdx].info.isPinned = true
-        pinnedNotes.unshift(notes[noteIdx])
-        notes.splice(noteIdx, 1)
+        var currNotes = getNotesFromPromise()
+            .then((currNotes) => {
+                var noteIdx = currNotes.findIndex((note) => note.info.id === noteId);
+                currNotes[noteIdx].info.isPinned = true
+                currNotes.splice(noteIdx, 1)
+                utilsService.storeToStorage('notes', currNotes)
+            })
+
+
+        // let currPinnedNotes = utilsService.loadFromStorage('pinnedNotes')
+        // pinnedNotes.unshift(notes[noteIdx])
+
     },
     unpinNote: (noteId) => {
         let noteIdx = pinnedNotes.findIndex((note) => note.info.id === noteId);
@@ -203,11 +215,16 @@ function deleteNote(id) {
     notes.splice(noteIdx, 1)
 }
 
+function getNotesFromPromise() {
+    return Promise.resolve(utilsService.loadFromStorage('notes'))
+}
+
 
 export const notesService = {
     getNotes,
     getPinnedNotes,
     createNote,
     deleteNote,
-    moveNote
+    moveNote,
+    getNotesFromPromise
 }

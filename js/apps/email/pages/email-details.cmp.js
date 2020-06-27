@@ -54,15 +54,13 @@ export default {
     methods: {
         getCurrEmail() {
             const { emailId } = this.$route.params;
-            return emailService.getEmailById(emailId).then((email) => {
-                return email
-            })
+            var email = emailService.getEmailById(emailId);
+            return email;
         },
         deleteEmail() {
             this.email.isDeleted = true;
-            emailService.updateEmail(this.email.id, 'isDeleted', this.email.isDeleted).then(() => {
-                emailService.deleteEmail(this.email.id)
-            })
+            emailService.updateEmail(this.email.id, 'isDeleted', this.email.isDeleted);
+            emailService.deleteEmail(this.email.id)
             this.$router.replace('/email');
         },
         respond() {

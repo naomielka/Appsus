@@ -50,6 +50,7 @@ export default {
         onPin(id) {
             if (this.info.isPinned) {
                 notesService.moveNote.unpinNote(id)
+                this.notes = notesService.getNotesFromPromise()
             } else {
                 notesService.moveNote.pinNote(id)
                 console.log(id);
