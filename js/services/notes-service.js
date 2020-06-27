@@ -104,14 +104,17 @@ utilsService.storeToStorage('notes', notes)
 
 
 const moveNote = {
+
     pinNote: (noteId) => {
-        var currNotes = getNotesFromPromise()
-            .then((currNotes) => {
-                var noteIdx = currNotes.findIndex((note) => note.info.id === noteId);
-                currNotes[noteIdx].info.isPinned = true
-                currNotes.splice(noteIdx, 1)
-                utilsService.storeToStorage('notes', currNotes)
-            })
+
+        var currNotes = getNotes()
+        currNotes.then((currNotes) => {
+            var noteIdx = currNotes.findIndex((note) => note.info.id === noteId);
+            currNotes[noteIdx].info.isPinned = true
+            currNotes.splice(noteIdx, 1)
+            utilsService.storeToStorage('notes', currNotes)
+
+        })
 
 
         // let currPinnedNotes = utilsService.loadFromStorage('pinnedNotes')

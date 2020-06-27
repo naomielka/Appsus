@@ -35,7 +35,7 @@ export default {
 </section>
 <section class='notes-container'>
 <div  v-for='(note, idx) in notes'> 
-<component :id='note.info.id' :is="note.type"  :info="note.info"></component>
+<component @reloadAllNotes='reloadNotes'  :id='note.info.id' :is="note.type"  :info="note.info"></component>
 </div>
 </section>
 </div>
@@ -125,6 +125,15 @@ export default {
 
 
 
+        },
+        reloadNotes() {
+            console.log('trigggggred');
+
+            notesService.getNotes()
+                .then(notes => {
+                    this.notes = notes
+                    this.filteredNotes = notes.push(...this.pinnedNotes)
+                })
         }
     },
 
