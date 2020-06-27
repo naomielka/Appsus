@@ -24,6 +24,8 @@ export default {
                 </div>
             
              <div v-if='pickingColor === false' class='buttons-wrapper'>
+             <button @click='sendAsEmail' class='delete-button'><i class="far fa-envelope"></i></button>
+
                   <button @click='addTodoMode' class='delete-button'><i class="fas fa-plus"></i></button>
                   <button @click='pickingColor = !pickingColor' class='delete-button'><i class="fas fa-palette"></i></button>
                   <button @click='isUpdating = !isUpdating' class='delete-button'><i class="fas fa-edit"></i></button>
@@ -97,6 +99,13 @@ export default {
                 console.log(id);
             }
 
+        },
+        sendAsEmail() {
+            let todoTxt = ''
+            this.info.todos.forEach(todo => todoTxt += todo.txt)
+            console.log(todoTxt);
+
+            this.$router.push(`newEmail/${this.info.label}/${todoTxt}`)
         }
     },
     computed: {

@@ -23,6 +23,18 @@ const myRoutes = [{
         component: emailCompose
     },
     {
+        path: '/newEmail/:txt',
+        component: emailCompose
+    },
+    {
+        path: '/newEmail/:subject/:txt',
+        component: emailCompose
+    },
+    {
+        path: '/newEmail/:from/:subject/:txt',
+        component: emailCompose
+    },
+    {
         path: '/notes',
         component: notesApp
     },
