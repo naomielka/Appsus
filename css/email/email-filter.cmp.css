@@ -8,7 +8,7 @@
 }
 
 .email-filter select {
-    margin: 10px 0;
+    margin: 10px 5px;
 }
 
 .email-filter option {
@@ -30,7 +30,13 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
+    .email-filter {
+        flex-direction: column;
+    }
+    .email-filter .selectors {
+        flex-direction: row;
+    }
     .email-filter input {
         max-width: 200px;
         margin: 5px 0px 0px 10px;

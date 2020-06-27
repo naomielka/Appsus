@@ -16,7 +16,7 @@
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 720px) {
     .email-status span:first-of-type {
         border-right: none;
         padding-right: 5px;
