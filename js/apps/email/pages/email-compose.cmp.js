@@ -1,4 +1,5 @@
 import { emailService } from '../../../services/email.service.js'
+import { notesService } from '../../../services/notes-service.js'
 
 export default {
     template: `
@@ -9,25 +10,45 @@ export default {
             <span>Subject:</span> <input type="text" v-model="subject"/>
             </br>
             <textarea rows="1" cols="50" v-model="body"></textarea>     
+            <button @click="sendNote"><i class="fas fa-sticky-note"></i></button>
             <button @click="sendEmail">Send</button>
         </form>
     </div>
     `,
     data() {
         return {
-            to: '',
-            subject: '',
-            body: '',
+            to: this.$route.params.from,
+            subject: this.$route.params.subject,
+            body: this.$route.params.txt,
         }
     },
-    created() {},
+    created() {
+        console.log(this.$route.params.from);
+
+
+
+
+
+
+    },
     methods: {
         sendEmail() {
             emailService.composeNewEmail(this.to, this.subject, this.body)
             this.to = '';
             this.subject = '';
             this.body = '';
+            this.$router.replace('../../../email')
+        },
+        sendNote() {
+            notesService.createNote.createEmailNote(this.to, this.subject, this.body)
+            this.to = '';
+            this.subject = '';
+            this.body = '';
+            console.log(this.$route.params)
+            this.$router.replace('../../../notes')
         }
     },
-    components: {}
+    components: {
+        notesService
+    }
 }

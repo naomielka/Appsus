@@ -15,7 +15,7 @@ var gCreators = [{
         img: 'img/yakovs-pic1.jpg',
         name: 'Yakov Zovner',
         about: '25 years old, from Bat Yam.',
-        githubLink: 'https://github.com/naomielka'
+        githubLink: 'https://github.com/yashaba/'
     },
 ]
 

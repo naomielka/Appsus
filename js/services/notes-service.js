@@ -19,6 +19,17 @@ var pinnedNotes = [{
 
 ];
 var notes = [{
+        type: "noteEmail",
+
+        info: {
+            isPinned: false,
+            id: utilsService.getRandomId(),
+            from: 'Avraham',
+            subject: 'Where is my money',
+            txt: 'pick up the phone!!',
+        }
+    },
+    {
 
         type: "noteText",
 
@@ -34,6 +45,7 @@ var notes = [{
 
         type: "noteImg",
         info: {
+            txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
             url: "https://cdn.searchenginejournal.com/wp-content/uploads/2018/04/durable-urls-760x400.png",
@@ -44,6 +56,7 @@ var notes = [{
     {
         type: "noteTodos",
         info: {
+            txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
             label: "How was it:",
@@ -59,6 +72,7 @@ var notes = [{
     {
         type: "noteTodos",
         info: {
+            txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
             label: "How was it:",
@@ -76,6 +90,7 @@ var notes = [{
     {
         type: "noteVideo",
         info: {
+            txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
             src: "https://www.youtube.com/embed/r6hRHTu4HUw",
@@ -109,6 +124,20 @@ const createNote = {
                 isPinned: false,
                 id: utilsService.getRandomId(),
                 txt: txt
+            }
+        }
+        notes.unshift(newNote)
+    },
+    createEmailNote: (from, subj, txt) => {
+        let newNote = {
+            type: "noteEmail",
+
+            info: {
+                isPinned: false,
+                id: utilsService.getRandomId(),
+                from: from,
+                subject: subj,
+                txt: txt,
             }
         }
         notes.unshift(newNote)
@@ -166,8 +195,11 @@ const createNote = {
 
 function deleteNote(id) {
     var noteIdx = notes.findIndex((note) => note.info.id === id);
-    console.log(noteIdx);
-
+    if (noteIdx === -1) {
+        noteIdx = pinnedNotes.findIndex((note) => note.info.id === id)
+        pinnedNotes.splice(noteIdx, 1)
+        return
+    }
     notes.splice(noteIdx, 1)
 }
 
