@@ -89,10 +89,12 @@ export default {
     methods: {
         openEmail() {
             if (this.isDeleted === true) {
+                console.log(this.email)
                 this.isSelected = !this.isSelected;
             } else {
+                console.log(this.email)
                 this.isRead = true;
-                emailService.updateEmail(this.email.id, 'isRead', this.isRead, );
+                emailService.updateEmail(this.email.id, 'isRead', this.isRead, false);
                 eventBus.$emit('emailRead')
                 this.isSelected = !this.isSelected;
             }
@@ -107,8 +109,6 @@ export default {
             this.isStarred = !this.isStarred;
             emailService.updateEmail(this.email.id, 'isStarred', this.isStarred);
         }
-
-
     },
     components: {
         eventBus

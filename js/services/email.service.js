@@ -30,17 +30,14 @@ function getEmails(key = 'emails') {
     else return Promise.resolve(gDeletedEmails)
 }
 
-// function getDeletedEmails() {
-//     return Promise.resolve(gDeletedEmails)
-// }
 
 function getEmailsFromPromise(key) {
     var emailList = [];
     if (utilService.loadFromStorage(key)) {
         emailList = utilService.loadFromStorage(key);
-        return emailList;
+        return Promise.resolve(emailList);
     } else {
-        getEmails()
+        return getEmails(key)
             .then((emails) => {
                 emailList = emails;
                 utilService.storeToStorage(key, emails);
@@ -51,31 +48,36 @@ function getEmailsFromPromise(key) {
 }
 
 function getEmailById(emailId) {
-    var emailList = getEmailsFromPromise('emails')
-    var email = emailList.find(email => email.id === emailId)
-    if (!email) {
-        emailList = getEmailsFromPromise('deletedEmails')
-        email = emailList.find(email => email.id === emailId)
-    }
-    return email;
+    return getEmailsFromPromise('emails')
+        .then((emailList) => {
+            var email = emailList.find(email => email.id === emailId)
+            if (!email) {
+                return getEmailsFromPromise('deletedEmails').then((emailList) => {
+                    email = emailList.find(email => email.id === emailId)
+                })
+            }
+            return email;
+        })
 }
 
 function deleteEmail(emailId, isPermenent = false) {
     if (isPermenent === true) {
-        var emailList = getEmailsFromPromise('deletedEmails')
-        var emailIdx = emailList.findIndex((email) => email.id === emailId);
-        emailList.splice(emailIdx, 1)
-        console.log(emailIdx)
-        utilsService.storeToStorage('deletedEmails', emailList)
+        getEmailsFromPromise('deletedEmails')
+            .then((emailList) => {
+                var emailIdx = emailList.findIndex((email) => email.id === emailId);
+                emailList.splice(emailIdx, 1)
+                utilsService.storeToStorage('deletedEmails', emailList)
+            })
     } else {
-        var emailList = getEmailsFromPromise('emails')
-        var emailIdx = emailList.findIndex((email) => email.id === emailId);
-        console.log(emailIdx)
-        var deletedEmail = emailList.find((email) => email.id === emailId);
-        gDeletedEmails.unshift(deletedEmail)
-        emailList.splice(emailIdx, 1)
-        utilsService.storeToStorage('emails', emailList)
-        utilsService.storeToStorage('deletedEmails', gDeletedEmails)
+        getEmailsFromPromise('emails')
+            .then((emailList) => {
+                var emailIdx = emailList.findIndex((email) => email.id === emailId);
+                var deletedEmail = emailList.find((email) => email.id === emailId);
+                gDeletedEmails.unshift(deletedEmail)
+                emailList.splice(emailIdx, 1)
+                utilsService.storeToStorage('emails', emailList)
+                utilsService.storeToStorage('deletedEmails', gDeletedEmails)
+            })
     }
 }
 
@@ -90,28 +92,44 @@ function composeNewEmail(to, subject, body) {
         isDeleted: false,
         sentAt: new Date()
     }
-    var emailList = getEmailsFromPromise('emails')
-    emailList.unshift(newEmail)
-    utilsService.storeToStorage('emails', emailList)
+    getEmailsFromPromise('emails').then((emailList) => {
+        emailList.unshift(newEmail)
+        utilsService.storeToStorage('emails', emailList)
+    })
 }
 
 function countReadEmails() {
-    var emailList = getEmailsFromPromise('emails')
-    var readEmails = []
-    emailList.find((email) => {
-        if (email.isRead) readEmails.push(email);
+    return getEmailsFromPromise('emails').then((emailList) => {
+        var readEmails = []
+        emailList.find((email) => {
+            if (email.isRead) readEmails.push(email);
+        })
+        var unreadEmailsCount = emailList.length - readEmails.length
+        return { readEmailsCount: readEmails.length, unreadEmailsCount }
     })
-    var unreadEmailsCount = emailList.length - readEmails.length
-    return { readEmailsCount: readEmails.length, unreadEmailsCount }
 }
 
-function updateEmail(emailId, key, value, isDeleted) {
-    var email = getEmailById(emailId, isDeleted);
-    email[key] = value;
-    var emailList = getEmailsFromPromise('emails');
-    var emailIdx = emailList.findIndex((email) => email.id === emailId);
-    emailList.splice(emailIdx, 1, email)
-    utilsService.storeToStorage('emails', emailList)
+function updateEmail(emailId, key, value, isDeleted = false) {
+    getEmailById(emailId, isDeleted)
+        .then((email) => {
+            email[key] = value;
+            if (isDeleted) {
+                getEmailsFromPromise('deletedEmails')
+                    .then((emailList) => {
+                        var emailIdx = emailList.findIndex((email) => email.id === emailId);
+                        emailList.splice(emailIdx, 1, email)
+                        utilsService.storeToStorage('deletedEmails', emailList)
+                    })
+            } else {
+                getEmailsFromPromise('emails')
+                    .then((emailList) => {
+                        var emailIdx = emailList.findIndex((email) => email.id === emailId);
+                        emailList.splice(emailIdx, 1, email)
+                        utilsService.storeToStorage('emails', emailList)
+                    })
+
+            }
+        });
 
 }
 
