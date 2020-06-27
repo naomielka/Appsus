@@ -4,7 +4,7 @@ import { notesService } from '../../../services/notes-service.js'
 export default {
     template: `
     <div>
-        <form>
+        <form class="email-compose">
             <span>To:</span> <input type="text" v-model="to"/> 
             </br>
             <span>Subject:</span> <input type="text" v-model="subject"/>

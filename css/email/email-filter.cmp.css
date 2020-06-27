@@ -7,7 +7,38 @@
     border: none;
 }
 
+.email-filter select {
+    margin: 10px 0;
+}
+
 .email-filter option {
     background-color: rgba(221, 221, 221, 0.719);
     border: none;
+}
+
+@media (max-width: 890px) {
+    .email-filter input {
+        max-width: 150px;
+    }
+}
+
+@media (max-width:890px) {
+    .email-filter input,
+    .email-filter select {
+        max-width: 150px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .email-filter input {
+        max-width: 200px;
+        margin: 5px 0px 0px 10px;
+        font-size: 0.7rem;
+    }
+    .email-filter select {
+        max-width: 100px;
+        margin: 5px 0px 0px 10px;
+        font-size: 0.7rem;
+    }
 }

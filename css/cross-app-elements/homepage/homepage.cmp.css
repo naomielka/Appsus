@@ -63,3 +63,31 @@ h2 {
     top: 10px;
     padding-bottom: 5px;
 }
+
+@media (max-width: 790px) {
+    .homepage h3,
+    h2 {
+        font-size: 1.5rem;
+    }
+    .nav-button {
+        font-size: 2rem;
+        text-shadow: 2px 2px #db4343, 4px 4px #66635a4b;
+    }
+    .homepage .link-bc {
+        height: 50px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 650px) {
+    .homepage main {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .homepage .nav-homepage {
+        margin: auto;
+    }
+    .homepage .link-bc {
+        width: 300px;
+    }
+}
