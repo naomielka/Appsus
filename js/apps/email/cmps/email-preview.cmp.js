@@ -68,6 +68,14 @@ export default {
                 row: true,
             }
         },
+        compEnvelopeClasses() {
+            if (this.isRead) return 'far fa-envelope-open'
+            else return 'far fa-envelope'
+        },
+        compStarClasses() {
+            if (this.isStarred) return 'fas fa-star'
+            else return 'far fa-star'
+        },
         bodyPreview() {
             if (this.email.body.length < 50) return this.email.body
             else return `${this.email.body.substring(1,50)}...`
@@ -98,14 +106,6 @@ export default {
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;
             emailService.updateEmail(this.email.id, 'isStarred', this.isStarred);
-        },
-        bodyPreview() {
-            if (this.email.body.length < 50) return this.email.body
-            else return `${this.email.body.substring(1,50)}...`
-        },
-        detailedBodyPreview() {
-            if (this.email.body.length < 150) return this.email.body
-            else return `${this.email.body.substring(1,150)}...`
         }
 
 
