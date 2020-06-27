@@ -3,7 +3,7 @@ import { notesService } from '../../../services/notes-service.js'
 
 export default {
     template: `
-    <div>
+    <div class="email-compose">
         <form>
             <span>To:</span> <input type="text" v-model="to"/> 
             </br>
@@ -12,6 +12,7 @@ export default {
             <textarea rows="1" cols="50" v-model="body"></textarea>     
             <button @click="sendNote"><i class="fas fa-sticky-note"></i></button>
             <button @click="sendEmail">Send</button>
+            <button @click="goBack">Back</button>
         </form>
     </div>
     `,
@@ -22,15 +23,7 @@ export default {
             body: this.$route.params.txt,
         }
     },
-    created() {
-        console.log(this.$route.params.from);
-
-
-
-
-
-
-    },
+    created() {},
     methods: {
         sendEmail() {
             emailService.composeNewEmail(this.to, this.subject, this.body)
@@ -46,6 +39,9 @@ export default {
             this.body = '';
             console.log(this.$route.params)
             this.$router.replace('../../../notes')
+        },
+        goBack() {
+            this.$router.replace('/email');
         }
     },
     components: {

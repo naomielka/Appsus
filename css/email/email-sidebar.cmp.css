@@ -16,7 +16,14 @@
 }
 
 .email-sidebar button:focus {
-    background-color: rgb(247, 163, 107);
+    background-color: rgb(231, 133, 68);
+    color: white;
+}
+
+.email-sidebar button:hover {
+    cursor: pointer;
+    background-color: rgb(243, 177, 134);
+    color: white;
 }
 
 .email-sidebar a {
@@ -27,4 +34,9 @@
     color: black;
     border-radius: 15px;
     font-size: 1.3rem;
+}
+
+.email-sidebar a:hover {
+    background-color: rgba(255, 47, 47, 0.747);
+    color: white;
 }
