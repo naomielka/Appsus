@@ -14,7 +14,7 @@ function getPinnedNotes() {
 var pinnedNotes = [{
 
         type: "noteText",
-        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: true, }
+        info: { txt: "First ever text note!", id: utilsService.getRandomId(), isPinned: true, }
     },
 
 ];
@@ -33,13 +33,13 @@ var notes = [{
 
         type: "noteText",
 
-        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: false, }
+        info: { txt: "Second text note ever created", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
         type: "noteText",
 
-        info: { txt: "second text note!", id: utilsService.getRandomId(), isPinned: false, }
+        info: { txt: "Buy some milk", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
@@ -59,13 +59,13 @@ var notes = [{
             txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
-            label: "How was it:",
+            label: "Groceries:",
             todos: [{
-                txt: "Do dat",
+                txt: "Some Milk",
                 doneAt: true
             }, {
-                txt: "Do this",
-                doneAt: false
+                txt: "Tomato",
+                doneAt: true
             }]
         }
     },
@@ -75,13 +75,13 @@ var notes = [{
             txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
-            label: "How was it:",
+            label: "תומך בעברית?:",
             todos: [{
-                    txt: "Do that",
+                    txt: "לא",
                     doneAt: true
                 },
                 {
-                    txt: "Do this",
+                    txt: "כן",
                     doneAt: false
                 }
             ]

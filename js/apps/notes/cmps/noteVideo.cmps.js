@@ -27,7 +27,7 @@ export default {
         return {
             val: "",
             isUpdating: false,
-            noteStyle: '#fff740',
+            noteStyle: '#a9ca41',
             pickingColor: false,
             isHovering: false,
             pinVisible: false
