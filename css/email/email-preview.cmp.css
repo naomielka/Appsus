@@ -52,3 +52,25 @@
 .email-preview .fa-envelope {
     font-size: 1.5rem;
 }
+
+@media (max-width: 790px) {
+    .email-preview {
+        font-size: 0.9rem;
+    }
+    .img-container {
+        min-width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+        margin: auto 0;
+    }
+    .email-preview .icons {
+        margin: 15px;
+    }
+    .email-preview .fa-star {
+        font-size: 1rem;
+    }
+    .email-preview .fa-envelope-open,
+    .email-preview .fa-envelope {
+        font-size: 1rem;
+    }
+}

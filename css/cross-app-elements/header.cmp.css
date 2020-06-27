@@ -24,3 +24,14 @@
     position: absolute;
     border-radius: 10px;
 }
+
+@media (max-width: 650px) {
+    .header h1 {
+        font-size: 5rem;
+    }
+    .header .bc-div {
+        background-color: rgba(245, 229, 156, 0.582);
+        height: 50px;
+        max-width: 300px;
+    }
+}

@@ -80,9 +80,22 @@ export default {
                     emailsToShow = this.emails.filter(email => email.isStarred === true)
                 } else if (this.filterType === 'deleted') {
                     emailsToShow = this.deletedEmails
+
+                } else if (this.filterType === 'date') {
+                    if (this.filterBy === 'recent') {
+                        emailsToShow = this.emails.sort(function(emailA, emailB) {
+                            return emailA.sentAt < emailB.sentAt ? -1 : 1;
+
+                        });
+                    } else if (this.filterBy === 'old') {
+                        console.log('ty')
+                        emailsToShow = this.emails.sort(function(emailA, emailB) {
+                            return emailA.sentAt > emailB.sentAt ? 1 : -1;
+                        });
+                    }
                 }
+                return emailsToShow
             }
-            return emailsToShow
         },
         deleteEmail(emailId) {
             var email = emailService.getEmailById(emailId)

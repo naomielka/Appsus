@@ -11,3 +11,9 @@
     height: 50px;
     border-bottom: gray 1px solid;
 }
+
+@media (max-width: 650px) {
+    .email-app .top-bar {
+        height: 100px;
+    }
+}
