@@ -1,6 +1,5 @@
 import { notesService } from '../../../services/notes-service.js'
 import colorPick from './noteColor.cmps.js'
-import { utilsService } from '../../../services/utils.service.js';
 export default {
     template: `
           <section  @mouseleave='pinVisible= false' @mouseover='pinVisible= true' @keyup.enter="isUpdating = false" :style='{background: noteStyle}' class= 'noteText'>
@@ -49,15 +48,11 @@ export default {
             this.noteStyle = color
         },
         onPin(id) {
-
             if (this.info.isPinned) {
                 notesService.moveNote.unpinNote(id)
             } else {
                 notesService.moveNote.pinNote(id)
-                setTimeout(() => { this.$emit('reloadAllNotes') }, 100)
-
-
-
+                console.log(id);
             }
 
         },

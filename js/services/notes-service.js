@@ -3,23 +3,21 @@ import { utilsService } from './utils.service.js'
 
 
 function getNotes() {
-    return Promise.resolve(utilsService.loadFromStorage('notes'));
+    return Promise.resolve(notes);
 }
 
 function getPinnedNotes() {
-    return Promise.resolve(utilsService.loadFromStorage('pinnedNotes'));
+    return Promise.resolve(pinnedNotes);
 }
 
 
 var pinnedNotes = [{
 
         type: "noteText",
-        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: true, }
+        info: { txt: "First ever text note!", id: utilsService.getRandomId(), isPinned: true, }
     },
 
 ];
-
-utilsService.storeToStorage('pinnedNotes', pinnedNotes)
 var notes = [{
         type: "noteEmail",
 
@@ -35,13 +33,13 @@ var notes = [{
 
         type: "noteText",
 
-        info: { txt: "First text note", id: utilsService.getRandomId(), isPinned: false, }
+        info: { txt: "Second text note ever created", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
         type: "noteText",
 
-        info: { txt: "second text note!", id: utilsService.getRandomId(), isPinned: false, }
+        info: { txt: "Buy some milk", id: utilsService.getRandomId(), isPinned: false, }
     },
     {
 
@@ -61,13 +59,13 @@ var notes = [{
             txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
-            label: "How was it:",
+            label: "Groceries:",
             todos: [{
-                txt: "Do dat",
+                txt: "Some Milk",
                 doneAt: true
             }, {
-                txt: "Do this",
-                doneAt: false
+                txt: "Tomato",
+                doneAt: true
             }]
         }
     },
@@ -77,13 +75,13 @@ var notes = [{
             txt: '',
             isPinned: false,
             id: utilsService.getRandomId(),
-            label: "How was it:",
+            label: "תומך בעברית?:",
             todos: [{
-                    txt: "Do that",
+                    txt: "לא",
                     doneAt: true
                 },
                 {
-                    txt: "Do this",
+                    txt: "כן",
                     doneAt: false
                 }
             ]
@@ -92,7 +90,7 @@ var notes = [{
     {
         type: "noteVideo",
         info: {
-            txt: '',
+            txt: 'video',
             isPinned: false,
             id: utilsService.getRandomId(),
             src: "https://www.youtube.com/embed/r6hRHTu4HUw",
@@ -100,26 +98,13 @@ var notes = [{
     },
 ];
 
-utilsService.storeToStorage('notes', notes)
-
 
 const moveNote = {
-
     pinNote: (noteId) => {
-
-        var currNotes = getNotes()
-        currNotes.then((currNotes) => {
-            var noteIdx = currNotes.findIndex((note) => note.info.id === noteId);
-            currNotes[noteIdx].info.isPinned = true
-            currNotes.splice(noteIdx, 1)
-            utilsService.storeToStorage('notes', currNotes)
-
-        })
-
-
-        // let currPinnedNotes = utilsService.loadFromStorage('pinnedNotes')
-        // pinnedNotes.unshift(notes[noteIdx])
-
+        let noteIdx = notes.findIndex((note) => note.info.id === noteId);
+        notes[noteIdx].info.isPinned = true
+        pinnedNotes.unshift(notes[noteIdx])
+        notes.splice(noteIdx, 1)
     },
     unpinNote: (noteId) => {
         let noteIdx = pinnedNotes.findIndex((note) => note.info.id === noteId);
@@ -218,16 +203,11 @@ function deleteNote(id) {
     notes.splice(noteIdx, 1)
 }
 
-function getNotesFromPromise() {
-    return Promise.resolve(utilsService.loadFromStorage('notes'))
-}
-
 
 export const notesService = {
     getNotes,
     getPinnedNotes,
     createNote,
     deleteNote,
-    moveNote,
-    getNotesFromPromise
+    moveNote
 }
