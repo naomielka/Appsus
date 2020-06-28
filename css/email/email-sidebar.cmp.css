@@ -1,15 +1,20 @@
 .email-sidebar {
     padding-top: 50px;
-    background-color: rgba(255, 250, 235, 0.603);
+    background-color: rgba(255, 255, 255, 0.603);
+    width: 220px;
     /* height: 100vh; */
-    width: 200px;
+}
+
+.email-sidebar .sticky-bar {
+    width: 180px;
+    top: 100px;
 }
 
 .email-sidebar button {
     margin-bottom: 5px;
     border: none;
     border-radius: 0px;
-    width: 85%;
+    width: 150px;
     padding: 5px;
     background-color: rgba(247, 163, 107, 0.479);
     font-size: 1rem;
@@ -30,7 +35,6 @@
     background-color: rgba(245, 70, 70, 0.5);
     margin-bottom: 10px;
     padding: 10px;
-    /* border: 1px solid rgb(255, 62, 62); */
     color: black;
     border-radius: 15px;
     font-size: 1.3rem;
@@ -43,6 +47,18 @@
 
 .email-sidebar .action-button {
     display: none;
+}
+
+.sticky .email-sidebar .sticky-bar {
+    position: fixed;
+    z-index: 2;
+    width: 180px;
+    top: 100px;
+    /* height: 100vh; */
+}
+
+.sticky .email-sidebar {
+    width: 220px;
 }
 
 @media (max-width: 790px) {

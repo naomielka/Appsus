@@ -12,16 +12,16 @@ export const emailService = {
 }
 
 var gEmails = [
-    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript.', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '14JKI', from: 'may', subject: 'How are you??', body: 'Head over to our Learning Area JavaScript topic if you want to learn JavaScript but have no previous experience of JavaScript or programming. The complete modules available there are as follows:', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '12HJ5', from: 'Jason', subject: 'Wassap?', body: 'JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript.', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '14JKI', from: 'may', subject: 'How are you??', body: 'Head over to our Learning Area JavaScript topic if you want to learn JavaScript but have no previous experience of JavaScript or programming. The complete modules available there are as follows:', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
     { id: '255FF', from: 'amit', subject: 'Wassap?', body: `JavaScript building blocks
-    Continues our coverage of JavaScript's key fundamental features, turning our attention to commonly-encountered types of code blocks such as conditional statements, loops, functions, and events.`, isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '12MK0', from: 'ellah', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '689NJ', from: 'tal', subject: `'Wassap?'`, body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '45JUK', from: 'oren', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: '5JKI5', from: 'hila', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: 'KL95J', from: 'taia', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
-    { id: 'MK5IS', from: 'idan', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isDeleted: false, sentAt: 1551133930594 },
+    Continues our coverage of JavaScript's key fundamental features, turning our attention to commonly-encountered types of code blocks such as conditional statements, loops, functions, and events.`, isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '12MK0', from: 'ellah', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '689NJ', from: 'tal', subject: `'Wassap?'`, body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '45JUK', from: 'oren', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: '5JKI5', from: 'hila', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'KL95J', from: 'taia', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
+    { id: 'MK5IS', from: 'idan', subject: 'Wassap?', body: 'Pick up!', isRead: false, isStarred: false, isSentFromMe: false, isDeleted: false, sentAt: 1551133930594 },
 
 ]
 var gDeletedEmails = []
@@ -88,6 +88,7 @@ function composeNewEmail(to, subject, body) {
         body: body,
         isRead: false,
         isStarred: false,
+        isSentFromMe: true,
         isDeleted: false,
         sentAt: new Date()
     }

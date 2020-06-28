@@ -9,7 +9,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     template: `
     <div class="app-container">
-        <div class="email-app flex row">
+        <div class="email-app flex row space-between">
             <email-sidebar  @filtered="getFilter"></email-sidebar>
             <div class="flex col width-all">
                 <section class="top-bar flex row space-between align-center">
@@ -23,6 +23,7 @@ export default {
     data() {
         return {
             emails: [],
+            deletedEmails: [],
             emailsToShow: [],
             filterBy: null,
             filterType: null
@@ -48,7 +49,7 @@ export default {
             if (utilsService.loadFromStorage(key)) {
                 this[key] = utilsService.loadFromStorage(key);
             } else {
-                this[key] = emailService.getEmails()
+                this[key] = emailService.getEmails(key)
                     .then((emails) => {
                         this[key] = emails;
                         utilsService.storeToStorage(key, emails);
@@ -78,7 +79,10 @@ export default {
                     })
                 } else if (this.filterType === 'star') {
                     emailsToShow = this.emails.filter(email => email.isStarred === true)
+                } else if (this.filterType === 'sent') {
+                    emailsToShow = this.emails.filter(email => email.isSentFromMe === true)
                 } else if (this.filterType === 'deleted') {
+                    console.log(this.deletedEmails)
                     emailsToShow = this.deletedEmails
 
                 } else if (this.filterType === 'date') {
@@ -88,7 +92,6 @@ export default {
 
                         });
                     } else if (this.filterBy === 'old') {
-                        console.log('ty')
                         emailsToShow = this.emails.sort(function(emailA, emailB) {
                             return emailA.sentAt > emailB.sentAt ? 1 : -1;
                         });
@@ -100,7 +103,28 @@ export default {
         deleteEmail(emailId) {
             var email = emailService.getEmailById(emailId)
             if (email.isDeleted) {
-                emailService.deleteEmail(emailId, true)
+                // emailService.deleteEmail(emailId, true)
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+                            'Deleted!',
+                            'This eMail has been deleted.',
+                            'success'
+                        )
+                        emailService.deleteEmail(emailId, true)
+                        this.getEmails('emails')
+                        this.getEmails('deletedEmails')
+                        this.emailsToShow = this.renderEmailList('all', 'all')
+                    }
+                })
             } else {
                 email.isDeleted = true;
                 emailService.updateEmail(emailId, 'isDeleted', email.isDeleted);

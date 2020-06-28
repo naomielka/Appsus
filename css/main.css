@@ -29,6 +29,7 @@
 
 @import './notes/note-types.css';
 @import './notes/notes-general.css';
-.sticky .app-content {
-    padding-top: 50px;
-}
+
+/* .sticky .app-content {
+    padding-top: 30px;
+} */

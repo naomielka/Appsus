@@ -3,7 +3,7 @@ export default {
     <div class="email-filter flex row">
     <input @input="filterBySearchStr" v-model="filterBy.searchStr" type="text" placeholder="Search Email">
     <div class="selectors">
-        <select @change="filterByReadStat" v-model="filterBy.readStatus">
+        <select  @change="filterByReadStat" v-model="filterBy.readStatus">
                 <option value="all">All</option>
                 <option value="read">Read</option>
                 <option value="unread">Unread</option>
