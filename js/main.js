@@ -14,7 +14,7 @@ new Vue({
     <div>
         <app-header></app-header>
         <navbar></navbar>
-        <main>
+        <main class="app-content">
             <router-view/>
         </main>
     </div> 
@@ -27,3 +27,16 @@ new Vue({
         emailService
     }
 });
+
+
+window.onscroll = function() { getStickeyNav() };
+var elNavbar = document.getElementById("navbar");
+var sticky = elNavbar.offsetTop;
+
+function getStickeyNav() {
+    if (window.pageYOffset > sticky) {
+        document.body.classList.add("sticky");
+    } else {
+        document.body.classList.remove("sticky");
+    }
+}

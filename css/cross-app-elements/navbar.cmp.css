@@ -20,3 +20,11 @@
 .navbar a:not(:last-of-type) {
     border-right: 1px tomato solid;
 }
+
+.sticky .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(247, 239, 194);
+    z-index: 2;
+}
