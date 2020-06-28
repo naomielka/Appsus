@@ -33,9 +33,13 @@ export default {
             pinVisible: false
         };
     },
+    created() {
+        this.reportVal()
+    },
     methods: {
         reportVal() {
-            this.$emit("setVal", this.val);
+            console.log('video created');
+
         },
         deleteById() {
             console.log(this.info.id);
