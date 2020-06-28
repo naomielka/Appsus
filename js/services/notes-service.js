@@ -106,7 +106,18 @@ function createPinnedNotes() {
 
         type: "noteText",
         info: { txt: "First ever text note!", id: utilsService.getRandomId(), isPinned: true, }
-    }]
+    }, {
+
+        type: "noteMap",
+
+        info: {
+            lat: 35.6762,
+            lng: 139.6503,
+            txt: "Tokyo",
+            id: utilsService.getRandomId(),
+            isPinned: false,
+        }
+    }, ]
     utilsService.storeToStorage('pinnedNotes', preMadePinnedNotes)
     return preMadePinnedNotes
 }
@@ -132,6 +143,7 @@ function createNotes() {
 
             info: { txt: "Second text note ever created", id: utilsService.getRandomId(), isPinned: false, }
         },
+
         {
 
             type: "noteText",

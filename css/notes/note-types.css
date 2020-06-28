@@ -12,6 +12,26 @@
     /* padding: 30%; */
 }
 
+.noteMap {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-top: 30px;
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#map {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    bottom: 50px;
+}
+
 .noteText input {
     min-width: 30px
 }

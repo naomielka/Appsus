@@ -4,6 +4,8 @@ import emailApp from './apps/email/pages/email-app.cmp.js';
 import navbar from './cross-app-cmps/navbar.cmp.js'
 import appHeader from './cross-app-cmps/appHeader.cmp.js'
 import { emailService } from './services/email.service.js';
+import { locService } from './services/loc.service.js'
+import { mapService } from './services/map.service.js'
 
 
 
@@ -24,7 +26,9 @@ new Vue({
         emailApp,
         notesApp,
         navbar,
-        emailService
+        emailService,
+        locService,
+        mapService
     }
 });
 

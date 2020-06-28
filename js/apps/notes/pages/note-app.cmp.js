@@ -4,6 +4,7 @@ import noteTodos from '../cmps/noteTodos.cmps.js'
 import noteImg from '../cmps/noteImg.cmps.js'
 import noteVideo from '../cmps/noteVideo.cmps.js'
 import noteEmail from '../cmps/noteEmail.cmps.js'
+import noteMap from '../cmps/noteMap.cmps.js'
 // import Vue from 'vue';
 // Vue.forceUpdate();
 
@@ -194,7 +195,7 @@ export default {
         noteImg,
         noteVideo,
         noteEmail,
-        Vue
+        noteMap
     }
 
 }
