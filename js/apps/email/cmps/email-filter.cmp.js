@@ -4,11 +4,13 @@ export default {
     <input @input="filterBySearchStr" v-model="filterBy.searchStr" type="text" placeholder="Search Email">
     <div class="selectors">
         <select  @change="filterByReadStat" v-model="filterBy.readStatus">
-                <option value="all">All</option>
+                <option value="" disabled selected hidden >All</option>
+                <option value="all"  >All</option>
                 <option value="read">Read</option>
                 <option value="unread">Unread</option>
         </select>
-        <select @change="filterByDate" v-model="filterBy.date">
+        <select class='select' @change="filterByDate" v-model="filterBy.date">
+        <option value="" disabled selected hidden >Sort by Date</option>
                 <option value="recent">Most recent</option>
                 <option value="old">Oldest</option>
         </select>

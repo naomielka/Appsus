@@ -21,13 +21,15 @@
 }
 
 .email-sidebar button:focus {
+    height: 35px;
+    width: 160px;
     background-color: rgb(231, 133, 68);
     color: white;
 }
 
 .email-sidebar button:hover {
     cursor: pointer;
-    background-color: rgb(243, 177, 134);
+    background-color: rgb(241, 164, 113);
     color: white;
 }
 
