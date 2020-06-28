@@ -167,6 +167,15 @@ function createNotes() {
             }
         },
         {
+            type: "noteVideo",
+            info: {
+                txt: 'video',
+                isPinned: false,
+                id: utilsService.getRandomId(),
+                src: "https://www.youtube.com/embed/4UuNqx_3Nrc",
+            }
+        },
+        {
             type: "noteTodos",
             info: {
                 txt: '',
