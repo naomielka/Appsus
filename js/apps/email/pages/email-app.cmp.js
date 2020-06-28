@@ -33,9 +33,10 @@ export default {
 
     },
     created() {
-        this.getEmails('emails')
+        emailService.getEmails('emails')
+            .then(emails => this.emailsToShow = emails)
         this.getEmails('deletedEmails')
-        this.emailsToShow = this.renderEmailList('all', 'all')
+            // this.emailsToShow = this.renderEmailList('all', 'all')
 
     },
     methods: {

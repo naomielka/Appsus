@@ -43,7 +43,11 @@ function getEmailsFromPromise(key) {
     } else {
         getEmails()
             .then((emails) => {
+                console.log('else triggered');
+                console.log(emails);
+
                 emailList = emails;
+                console.log(emails);
                 utilService.storeToStorage(key, emails);
                 return emailList;
             })
