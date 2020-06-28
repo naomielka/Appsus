@@ -7,8 +7,8 @@ export default {
             <section class="email-header flex space-between">
                 <h1>Subject: {{email.subject}}</h1> 
                 <div class="action-buttons">
-                    <button @click="deleteEmail">delete</button>
-                    <button @click="respond">Respond</button>
+                    <button @click="deleteEmail"><i class="far fa-trash-alt"></i></button>
+                    <button @click="respond"><i class="fas fa-reply"></i></button>
                     <button @click="goBack">Back</button>
                 </div>
             </section>

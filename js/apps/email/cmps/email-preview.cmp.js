@@ -21,8 +21,8 @@ export default {
             <section class="email-header flex space-between">
                 <h1>Subject: {{email.subject}}</h1> 
                 <div class="action-buttons">
-                        <button @click="deleteEmail">delete</button>
-                        <button  @click="openEmailFullScreen">full screen</button>
+                        <button @click="deleteEmail"><i class="far fa-trash-alt"></i></button>
+                        <button  @click="openEmailFullScreen"><i class="fas fa-expand"></i></button>
                     </div>
             </section>
             <h3>from: {{email.from}}</h3>

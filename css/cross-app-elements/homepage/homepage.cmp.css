@@ -24,7 +24,8 @@ h2 {
 }
 
 .nav-button {
-    font-family: satisfy;
+    /* font-family: satisfy; */
+    font-family: roboto;
     -webkit-text-fill-color: rgb(248, 172, 73);
     text-shadow: 3px 3px #db4343, 6px 6px #66635a4b;
     font-size: 2.5rem;
@@ -44,6 +45,7 @@ h2 {
     background-color: rgb(250, 236, 160);
     border-radius: 10px;
     margin-bottom: 10px;
+    font-family: satisfy;
 }
 
 .homepage .bc-div:hover {
@@ -62,6 +64,11 @@ h2 {
     border-radius: 10px;
     top: 10px;
     padding-bottom: 5px;
+    font-family: satisfy;
+}
+
+.homepage .bc-div a {
+    font-family: satisfy;
 }
 
 @media (max-width: 790px) {

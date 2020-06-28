@@ -17,3 +17,13 @@
     font-family: satisfy;
     src: url(../fonts/Satisfy/Satisfy-Regular.ttf)
 }
+
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto/RobotoCondensed-Light.ttf);
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(../fonts/Roboto/RobotoCondensed-Bold.ttf);
+}

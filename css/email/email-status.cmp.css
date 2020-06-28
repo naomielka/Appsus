@@ -10,6 +10,10 @@
     padding-right: 5px;
 }
 
+.email-status span {
+    font-family: roboto;
+}
+
 @media (max-width: 890px) {
     .email-status {
         font-size: 0.8rem;
