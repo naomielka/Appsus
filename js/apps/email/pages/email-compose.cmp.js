@@ -11,7 +11,7 @@ export default {
             </br>
             <textarea rows="1" cols="50" v-model="body"></textarea>     
             <button @click="sendNote"><i class="fas fa-sticky-note"></i></button>
-            <button @click="sendEmail">Send</button>
+            <button @click="sendEmail">Send <i class="far fa-paper-plane"></i></button>
         </form>
     </div>
     `,
@@ -24,12 +24,6 @@ export default {
     },
     created() {
         console.log(this.$route.params.from);
-
-
-
-
-
-
     },
     methods: {
         sendEmail() {

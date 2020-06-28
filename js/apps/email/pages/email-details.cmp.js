@@ -22,7 +22,7 @@ export default {
                 <span>Subject: RE:{{email.subject}}</span> 
                 </br>
                 <textarea rows="1" cols="50" v-model="body"></textarea>     
-                <button @click="sendEmail">Send</button>
+                <button @click="sendEmail">Send <i class="far fa-paper-plane"></button>
             </form>
         </section>
     </main>
