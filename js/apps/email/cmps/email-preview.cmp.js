@@ -83,9 +83,12 @@ export default {
         detailedBodyPreview() {
             if (this.email.body.length < 150) return this.email.body
             else return `${this.email.body.substring(1,150)}...`
-        }
+        },
+
     },
-    created() {},
+    mounted() {
+        this.getImgContainerColor()
+    },
     methods: {
         openEmail() {
             if (this.isDeleted === true) {
@@ -106,15 +109,22 @@ export default {
         starOrUnstarThis() {
             this.isStarred = !this.isStarred;
             emailService.updateEmail(this.email.id, 'isStarred', this.isStarred);
+        },
+        getImgContainerColor() {
+            var colors = [
+                '#f8c9ae', '#f6d9a4', '#f89f9a', '#f36d4e',
+                '#f0e9c2', '#ea9766', '#ff3333', '#e4d06f', '#fbc4cb', '#ec6161'
+            ];
+            var elDivs = document.querySelectorAll('.img-container');
+            for (var i = 0; i < elDivs.length; i++) {
+                var randomColor = colors[Math.floor(
+                    Math.random() * colors.length)];
+                var div = elDivs[i]
+                div.style.backgroundColor = randomColor;
+            }
         }
-
-
     },
     components: {
         eventBus
     },
 }
-
-
-
-// selecting random color

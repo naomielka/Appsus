@@ -7,8 +7,8 @@ export const emailService = {
     composeNewEmail,
     countReadEmails,
     updateEmail,
-    getImgContainerColor,
-    getEmailsFromPromise
+    getEmailsFromPromise,
+    loadEmails
 }
 
 var gEmails = [
@@ -48,6 +48,22 @@ function getEmailsFromPromise(key) {
 
                 emailList = emails;
                 console.log(emails);
+                utilService.storeToStorage(key, emails);
+                return emailList;
+            })
+    }
+
+}
+
+function loadEmails(key) {
+    var emailList = [];
+    if (utilService.loadFromStorage(key)) {
+        emailList = utilService.loadFromStorage(key);
+        return Promise.resolve(emailList)
+    } else {
+        getEmails()
+            .then((emails) => {
+                emailList = emails;
                 utilService.storeToStorage(key, emails);
                 return emailList;
             })
@@ -119,16 +135,4 @@ function updateEmail(emailId, key, value, isDeleted) {
     emailList.splice(emailIdx, 1, email)
     utilsService.storeToStorage('emails', emailList)
 
-}
-
-function getImgContainerColor() {
-    var colors = [
-        '#ff0000', '#00ff00', '#0000ff',
-        '#ff3333', '#ffff00', '#ff6600'
-    ];
-    var randomColor = colors[Math.floor(
-        Math.random() * colors.length)];
-
-    var elDiv = document.querySelector('.img-container');
-    elDiv.style.backgroundColor = randomColor;
 }
