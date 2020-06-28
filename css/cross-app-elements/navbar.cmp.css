@@ -1,36 +1,30 @@
-.email-status {
-    background-color: rgba(221, 221, 221, 0.719);
-    padding: 5px;
-    border-radius: 5px;
-    margin: 10px;
+.navbar {
+    background-color: rgba(236, 222, 143, 0.5);
+    height: 50px;
+    /* width: 100vw; */
+    font-family: bebas;
+    font-size: 1.15rem;
 }
 
-.email-status span:first-of-type {
-    border-right: gray 1px solid;
-    padding-right: 5px;
+.navbar a {
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.email-status span {
-    font-family: roboto;
+.navbar a:hover {
+    color: #db4343;
+    background-color: rgba(255, 194, 137, 0.527);
 }
 
-@media (max-width: 890px) {
-    .email-status {
-        font-size: 0.8rem;
-    }
+.navbar a:not(:last-of-type) {
+    border-right: 1px tomato solid;
 }
 
-@media (max-width: 720px) {
-    .email-status span:first-of-type {
-        border-right: none;
-        padding-right: 5px;
-    }
-    .email-status {
-        height: 60px;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        margin-right: 10px;
-    }
+.sticky .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(247, 239, 194);
+    z-index: 2;
 }
