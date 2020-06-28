@@ -33,8 +33,11 @@ export default {
 
     },
     created() {
-        emailService.getEmails('emails')
-            .then(emails => this.emailsToShow = emails)
+        this.emailsToShow = emailService.getEmailsFromPromise('emails')
+        setTimeout(() => {
+                this.$forceUpdate()
+            }, 500)
+            // .then(emails => this.emailsToShow = emails)
         this.getEmails('deletedEmails')
             // this.emailsToShow = this.renderEmailList('all', 'all')
 
