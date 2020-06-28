@@ -71,6 +71,7 @@
         margin-bottom: 3px;
         padding: 5px;
         font-size: 0.8rem;
+        width: 80px;
     }
     .email-sidebar a {
         background-color: rgba(245, 70, 70, 0.5);
@@ -78,6 +79,12 @@
         padding: 5px;
         font-size: 1rem;
         border-radius: 10px;
+    }
+    .email-sidebar button:focus {
+        height: 26px;
+        width: 85px;
+        background-color: rgb(231, 133, 68);
+        color: white;
     }
 }
 
@@ -108,5 +115,10 @@
         display: block;
         position: fixed;
         z-index: 3;
+    }
+    .email-sidebar .action-button:focus {
+        height: 25px;
+        width: 50px;
+        background-color: rgb(231, 133, 68);
     }
 }

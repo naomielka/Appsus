@@ -49,7 +49,7 @@ export default {
             if (utilsService.loadFromStorage(key)) {
                 this[key] = utilsService.loadFromStorage(key);
             } else {
-                this[key] = emailService.getEmails(key)
+                emailService.getEmails(key)
                     .then((emails) => {
                         this[key] = emails;
                         utilsService.storeToStorage(key, emails);
