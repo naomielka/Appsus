@@ -5,6 +5,9 @@ import noteImg from '../cmps/noteImg.cmps.js'
 import noteVideo from '../cmps/noteVideo.cmps.js'
 import noteEmail from '../cmps/noteEmail.cmps.js'
 import noteMap from '../cmps/noteMap.cmps.js'
+import { locService } from '../../../services/loc.service.js'
+
+
 // import Vue from 'vue';
 // Vue.forceUpdate();
 
@@ -24,6 +27,7 @@ export default {
      <button @click= 'changeType("noteTodos")'><i class="fas fa-list"></i></button>
      <button @click= 'changeType("noteImg")' ><i class="fas fa-image"></i></button>
      <button @click= 'changeType("noteVideo") '><i class="fas fa-video"></i></button>
+     <button @click= 'changeType("noteMap") '><i class="fas fa-map-marked-alt"></i></button>
      <button @click= 'changeType("search")' ><i class="fas fa-search"></i></button>
      <button @click= 'createNote(type)' >Create</button>
      </main-buttons-container>
@@ -154,6 +158,10 @@ export default {
 
             } else if (this.type === 'noteVideo') {
                 notesService.createNote.createVideoNote(this.txt)
+            } else if (this.type === 'noteMap') {
+                locService.getLocByAdress(this.txt)
+                    .then((loc) => notesService.createNote.createMapNote(loc.locName, loc.lat, loc.lng))
+
             }
             this.txt = null
             this.imgUrl = null
@@ -168,6 +176,8 @@ export default {
                 this.placeHolder = 'Enter Note'
             } else if (type === 'search') {
                 this.placeHolder = 'Search Notes'
+            } else if (type === 'noteMap') {
+                this.placeHolder = 'Enter Location Name'
             } else { this.placeHolder = 'Video URL (Youtube)' }
         },
         searchNotes() {
@@ -195,7 +205,8 @@ export default {
         noteImg,
         noteVideo,
         noteEmail,
-        noteMap
+        noteMap,
+        locService
     }
 
 }

@@ -10,7 +10,7 @@ export default {
               <button  @click='onPin(info.id)' class='pin' v-if='pinVisible || info.isPinned'><i class="fas fa-thumbtack"></i></button>
               <h4 v-if='isUpdating === false'> {{info.txt}}</h4>
               <input  v-model='info.txt' v-if='isUpdating===true' type="text"/>
-              <map ref='map' id='map'></map>
+              <map   ref='map' id='map' ></map>
               <div v-if='pickingColor === false' class='buttons-wrapper'>
               <button @click='sendAsEmail' class='delete-button'><i class="far fa-envelope"></i></button>
 
@@ -34,7 +34,12 @@ export default {
         };
     },
     created() {
+
+    },
+    mounted() {
         this.initTheMap()
+        locService.getLocByAdress('bat yam')
+            .then((loc) => console.log(loc))
     },
     methods: {
 
@@ -43,20 +48,20 @@ export default {
             console.log('testeee', this.info.lat, );
             console.log('testttee', this.info.lng);
 
-            setTimeout(() => {
-                mapService.initMap(this.info.lat, this.info.lng)
-                    .then(() => {
-                        mapService.addMarker({ lat: this.info.lat, lng: this.info.lng });
-                    })
-                    .catch(console.log('INIT MAP ERROR'));
-                // locService.getPosition()
-                //     .then(pos => {
-                //         console.log('User position is:', pos.coords);
-                //     })
-                //     .catch(err => {
-                //         console.log('err!!!', err);
-                // })
-            }, 100)
+            // setTimeout(() => {
+            mapService.initMap(this.info.lat, this.info.lng)
+                .then(() => {
+                    mapService.addMarker({ lat: this.info.lat, lng: this.info.lng });
+                })
+                .catch(console.log('INIT MAP ERROR'));
+            // locService.getPosition()
+            //     .then(pos => {
+            //         console.log('User position is:', pos.coords);
+            //     })
+            //     .catch(err => {
+            //         console.log('err!!!', err);
+            // })
+            // }, 100)
         },
         // initMap(lat = 32.0749831, lng = 34.9120554) {
         //     console.log('InitMap');

@@ -15,9 +15,10 @@ function initMap(lat = 32.0132, lng = 34.7480) {
         .then(() => {
             console.log('google available');
             console.log(document.querySelector('#map'));
+            // console.log(document.querySelector(mapId));
 
             map = new google.maps.Map(
-                document.querySelector('#map'), {
+                document.querySelector(`#map`), {
                     center: { lat, lng },
                     zoom: 15
                 })

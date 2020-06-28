@@ -115,7 +115,7 @@ function createPinnedNotes() {
             lng: 139.6503,
             txt: "Tokyo",
             id: utilsService.getRandomId(),
-            isPinned: false,
+            isPinned: true,
         }
     }, ]
     utilsService.storeToStorage('pinnedNotes', preMadePinnedNotes)
@@ -279,86 +279,98 @@ function storeNote(newNote) {
 }
 
 const createNote = {
-    // newNote: null ,
+        // newNote: null ,
 
 
-    createTextNote: (txt) => {
-        let newNote = {
-            type: "noteText",
+        createTextNote: (txt) => {
+            let newNote = {
+                type: "noteText",
 
-            info: {
-                isPinned: false,
-                id: utilsService.getRandomId(),
-                txt: txt
+                info: {
+                    isPinned: false,
+                    id: utilsService.getRandomId(),
+                    txt: txt
+                }
             }
-        }
-        storeNote(newNote)
-    },
-    createEmailNote: (from, subj, txt) => {
-        let newNote = {
-            type: "noteEmail",
+            storeNote(newNote)
+        },
+        createEmailNote: (from, subj, txt) => {
+            let newNote = {
+                type: "noteEmail",
 
-            info: {
-                isPinned: false,
-                id: utilsService.getRandomId(),
-                from: from,
-                subject: subj,
-                txt: txt,
+                info: {
+                    isPinned: false,
+                    id: utilsService.getRandomId(),
+                    from: from,
+                    subject: subj,
+                    txt: txt,
+                }
             }
-        }
-        storeNote(newNote)
-    },
+            storeNote(newNote)
+        },
 
-    createListNote: (txt) => {
-        let newNote = {
-            type: "noteTodos",
-            info: {
-                isPinned: false,
-                id: utilsService.getRandomId(),
-                label: txt,
-                todos: [{
-                    txt: "Do that",
-                    doneAt: null
-                }, {
-                    txt: "Do this",
-                    doneAt: 187111111
-                }]
+        createListNote: (txt) => {
+            let newNote = {
+                type: "noteTodos",
+                info: {
+                    isPinned: false,
+                    id: utilsService.getRandomId(),
+                    label: txt,
+                    todos: [{
+                        txt: "Do that",
+                        doneAt: null
+                    }, {
+                        txt: "Do this",
+                        doneAt: 187111111
+                    }]
+                }
             }
-        }
-        storeNote(newNote)
-    },
+            storeNote(newNote)
+        },
 
 
 
-    createImgNote: (txt, url) => {
-        let newNote = {
-            type: "noteImg",
-            info: {
-                isPinned: false,
-                id: utilsService.getRandomId(),
-                url: url,
-                title: txt
-            },
-            style: { backgroundColor: "#00d" }
-        }
-
-        storeNote(newNote)
-    },
-    createVideoNote: (txt) => {
-        let newNote = {
-            type: "noteVideo",
-            info: {
-                isPinned: false,
-                id: utilsService.getRandomId(),
-                src: 'https://www.youtube.com/embed/' + txt.split(regex)[1],
+        createImgNote: (txt, url) => {
+            let newNote = {
+                type: "noteImg",
+                info: {
+                    isPinned: false,
+                    id: utilsService.getRandomId(),
+                    url: url,
+                    title: txt
+                },
+                style: { backgroundColor: "#00d" }
             }
-        }
-        storeNote(newNote)
+
+            storeNote(newNote)
+        },
+        createVideoNote: (txt) => {
+            let newNote = {
+                type: "noteVideo",
+                info: {
+                    isPinned: false,
+                    id: utilsService.getRandomId(),
+                    src: 'https://www.youtube.com/embed/' + txt.split(regex)[1],
+                }
+            }
+            storeNote(newNote)
+        },
+        createMapNote: (txt, lat, lng) => {
+            let newNote = {
+                type: "noteMap",
+
+                info: {
+                    lat: lat,
+                    lng: lng,
+                    txt: txt,
+                    id: utilsService.getRandomId(),
+                    isPinned: false,
+                }
+            }
+            storeNote(newNote)
+        },
     }
-
-
-
-}
+    // console.log('LOREEMMMMMMM', utilsService.getLoremIpsum(10));
 
 function deleteNote(id) {
     let notes = getNotes()
