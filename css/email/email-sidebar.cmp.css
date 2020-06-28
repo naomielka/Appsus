@@ -8,7 +8,7 @@
 .email-sidebar .sticky-bar {
     width: 180px;
     top: 100px;
-    font-family: 'Times New Roman', Times, serif
+    font-family: roboto-bold;
 }
 
 .email-sidebar button {
@@ -16,7 +16,7 @@
     border: none;
     border-radius: 0px;
     width: 150px;
-    padding: 5px;
+    padding: 10px;
     background-color: rgba(247, 163, 107, 0.479);
     font-size: 1rem;
     font-family: roboto-bold;
@@ -36,16 +36,16 @@
 }
 
 .email-sidebar a {
-    background-color: rgba(245, 70, 70, 0.5);
+    background-color: rgba(245, 70, 70, 0.658);
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 15px;
     color: black;
     border-radius: 15px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .email-sidebar a:hover {
-    background-color: rgba(255, 47, 47, 0.747);
+    background-color: rgba(253, 52, 52, 0.856);
     color: white;
 }
 
