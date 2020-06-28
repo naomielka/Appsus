@@ -26,7 +26,7 @@ export default {
         return {
             pickingColor: false,
             isUpdating: false,
-            noteStyle: '7afcff',
+            noteStyle: 'rgb(216, 251, 161)',
             isHovering: false,
             pinVisible: false
 

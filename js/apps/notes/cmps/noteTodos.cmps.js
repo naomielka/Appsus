@@ -41,7 +41,7 @@ export default {
         return {
             val: "",
             isUpdating: false,
-            noteStyle: '#feff9c',
+            noteStyle: 'rgb(251, 220, 246)',
             pickingColor: false,
             isHovering: false,
             addingTodo: false,

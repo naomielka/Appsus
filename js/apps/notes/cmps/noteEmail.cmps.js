@@ -26,7 +26,7 @@ export default {
         return {
             val: "",
             isUpdating: false,
-            noteStyle: 'white',
+            noteStyle: 'rgb(253, 216, 190)',
             pickingColor: false,
             isHovering: false,
             pinVisible: false
