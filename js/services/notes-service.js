@@ -5,6 +5,7 @@ var gNotes = createNotes()
 var gPinnedNotes = createPinnedNotes()
 
 function getNotes() {
+
     return Promise.resolve(gNotes);
 }
 
@@ -116,6 +117,7 @@ function createPinnedNotes() {
             txt: "Tokyo",
             id: utilsService.getRandomId(),
             isPinned: true,
+
         }
     }, ]
     utilsService.storeToStorage('pinnedNotes', preMadePinnedNotes)
@@ -185,6 +187,7 @@ function createNotes() {
                 isPinned: false,
                 id: utilsService.getRandomId(),
                 src: "https://www.youtube.com/embed/4UuNqx_3Nrc",
+                style: 'rgb(164, 221, 255)'
             }
         },
         {
@@ -212,6 +215,7 @@ function createNotes() {
                 isPinned: false,
                 id: utilsService.getRandomId(),
                 src: "https://www.youtube.com/embed/r6hRHTu4HUw",
+                style: 'rgb(164, 221, 255)'
             }
         },
     ];
@@ -375,27 +379,53 @@ const createNote = {
 function deleteNote(id) {
     let notes = getNotes()
     notes.then(notes => {
-            var noteIdx = notes.findIndex((note) => note.info.id === id);
-            if ((noteIdx === -1)) {
-                var pinnedNotes = getPinnedNotes()
-                pinnedNotes.then(pinnedNotes => {
-                    noteIdx = pinnedNotes.findIndex((note) => note.info.id === id)
-                    pinnedNotes.splice(noteIdx, 1)
-                    utilsService.storeToStorage('pinnedNotes', pinnedNotes)
-                })
-                return
-            }
-            notes.splice(noteIdx, 1)
-            utilsService.storeToStorage('notes', notes)
-        })
-        // if (noteIdx === -1) {
-        //     noteIdx = pinnedNotes.findIndex((note) => note.info.id === id)
-        //     pinnedNotes.splice(noteIdx, 1)
+        var noteIdx = notes.findIndex((note) => note.info.id === id);
+        if ((noteIdx === -1)) {
+            var pinnedNotes = getPinnedNotes()
+            pinnedNotes.then(pinnedNotes => {
+                noteIdx = pinnedNotes.findIndex((note) => note.info.id === id)
+                pinnedNotes.splice(noteIdx, 1)
+                utilsService.storeToStorage('pinnedNotes', pinnedNotes)
+            })
+            return
+        }
+        notes.splice(noteIdx, 1)
+        utilsService.storeToStorage('notes', notes)
+    })
+}
+
+function updateNotes(changes) {
+    let notes = getNotes()
+    notes.then(notes => {
+        let noteToChange = notes.findIndex((note) => note.info.id === changes.id)
+        console.log('note index', noteToChange);
+        console.log('before', notes[noteToChange]);
+        if (changes.style) notes[noteToChange].style = changes.style
+        if (changes.txt) notes[noteToChange].txt = changes.txt
+        console.log('after', notes[noteToChange]);
+        console.log('notes inside updates', notes);
+
+        // notes.splice(noteToChange, 1, notes[noteToChange])
+        utilsService.storeToStorage('notes', notes)
+        return Promise.resolve(notes)
+
+
+        // if (noteToChange === -1) {
+        //     noteToChange = this.pinnedNotes.findIndex((note) => note.info.id === changes.id)
+        //     console.log('pinned index', noteToChange);
         //     return
         // }
-        // notes.splice(noteIdx, 1)
-        // utilsService.storeToStorage('notes', notes)
+
+    })
 }
+// if (noteIdx === -1) {
+//     noteIdx = pinnedNotes.findIndex((note) => note.info.id === id)
+//     pinnedNotes.splice(noteIdx, 1)
+//     return
+// }
+// notes.splice(noteIdx, 1)
+// utilsService.storeToStorage('notes', notes)
+
 
 
 export const notesService = {
@@ -403,5 +433,6 @@ export const notesService = {
     getPinnedNotes,
     createNote,
     deleteNote,
-    moveNote
+    moveNote,
+    updateNotes
 }

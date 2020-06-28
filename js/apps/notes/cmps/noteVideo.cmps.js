@@ -1,5 +1,6 @@
 import { notesService } from '../../../services/notes-service.js'
 import colorPick from './noteColor.cmps.js'
+import { utilsService } from '../../../services/utils.service.js';
 
 
 
@@ -27,7 +28,7 @@ export default {
         return {
             val: "",
             isUpdating: false,
-            noteStyle: 'rgb(164, 221, 255)',
+            noteStyle: this.info.style,
             pickingColor: false,
             isHovering: false,
             pinVisible: false
@@ -49,6 +50,9 @@ export default {
         applyColor(color) {
             this.pickingColor = false
             this.noteStyle = color
+            let changes = { id: this.info.id, txt: this.txt, style: this.noteStyle, url: this.url }
+            this.$emit('saveNotes', changes)
+
             console.log(color);
 
         },

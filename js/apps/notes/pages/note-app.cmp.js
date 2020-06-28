@@ -6,6 +6,7 @@ import noteVideo from '../cmps/noteVideo.cmps.js'
 import noteEmail from '../cmps/noteEmail.cmps.js'
 import noteMap from '../cmps/noteMap.cmps.js'
 import { locService } from '../../../services/loc.service.js'
+import { utilsService } from '../../../services/utils.service.js'
 
 
 // import Vue from 'vue';
@@ -36,13 +37,13 @@ export default {
     <section v-if='pinnedNotes.length' class='pinned-notes-container'>
         <h2> Pinned </h2>
     <div  v-for='(note, idx) in pinnedNotes'> 
-    <component  :id='note.info.id' :is="note.type"  :info="note.info"></component>
+    <component  @saveNotes='saveBothNotes' :id='note.info.id' :is="note.type"  :info="note.info"></component>
     
     </div>
     </section>
     <section v-show='notes' class='notes-container'>
     <div  v-for='(note, idx) in notes'> 
-    <component :key='componentKey' :id='note.info.id' :is="note.type"  :info="note.info"></component>
+    <component @saveNotes='saveBothNotes' :key='componentKey' :id='note.info.id' :is="note.type"  :info="note.info"></component>
     </div>
     </section>
     </div>
@@ -95,8 +96,9 @@ export default {
             })
             .then(notesPrm => this.notes = notesPrm)
             .then(() => {
-                console.log(this.notes);
-
+                console.log('NOTES', this.notes);
+                this.$forceUpdate
+                this.$forceUpdate()
                 this.componentKey += 1
                 console.log(this.componentKey);
             })
@@ -120,6 +122,22 @@ export default {
 
     },
     methods: {
+        saveBothNotes(changes) {
+            console.log(this.notes);
+            console.log(changes);
+            notesService.updateNotes(changes)
+            this.notes = utilsService.loadFromStorage('notes')
+
+
+
+
+
+
+
+            // utilsService.storeToStorage('notes', this.notes)
+
+
+        },
         forceUpdate() {
             this.$forceUpdate
             console.log('force updateeeee');
